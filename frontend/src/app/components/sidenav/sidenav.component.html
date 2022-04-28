@@ -1,0 +1,51 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  PSI021
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+    <h4 class="name">John Smith</h4>
+    <p class="designation">Software Engineer</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/home">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/exmeplo">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/exemplo2">
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="**">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+
+    <button mat-button routerLinkActive="list-item-active" class="menu-button logout">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

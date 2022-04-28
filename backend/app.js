@@ -15,7 +15,8 @@ app.use(cors({
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
-var dev_db_url = 'mongodb://psi021:psi021@localhost:27017/psi021?retryWrites=true&authSource=psi021';
+var dev_db_url = 'mongodb+srv://psi021:psi021@cluster0.00uss.mongodb.net/psi021?retryWrites=true';
+//var dev_db_url = 'mongodb://psi021:psi021@localhost:27017/psi021?retryWrites=true&authSource=psi021';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;

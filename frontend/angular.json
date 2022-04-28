@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend": {
+    "teste": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend",
+            "outputPath": "dist/teste",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "browserTarget": "teste:build:production"
             },
             "development": {
-              "browserTarget": "frontend:build:development"
+              "browserTarget": "teste:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "teste:build"
           }
         },
         "test": {
@@ -107,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "frontend"
+  "defaultProject": "teste"
 }
