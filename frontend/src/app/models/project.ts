@@ -5,4 +5,5 @@ export interface Project {
     startDate: Date;
     endDate: Date | null;
     tasks: Array<string> | null;
+    teams: Array<string> | null;
 }

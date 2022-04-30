@@ -3,5 +3,5 @@ export interface Task {
     name: string;
     level: string;
     percentageConclusion: number;
-    users: string;
+    users: Array<string>;
 }
