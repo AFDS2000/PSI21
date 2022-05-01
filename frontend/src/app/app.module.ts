@@ -10,14 +10,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about.component';
+import { HelpComponent } from './components/help/help.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    HomeComponent, 
-    NotFoundComponent, 
+    AppComponent,
+    HomeComponent,
+    ProfileComponent,
+    AboutComponent,
+    HelpComponent,
+    NotFoundComponent,
     SidenavComponent
   ],
   imports: [
@@ -29,8 +36,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
