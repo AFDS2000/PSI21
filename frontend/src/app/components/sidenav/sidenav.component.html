@@ -13,6 +13,13 @@
 
     <mat-divider></mat-divider>
 
+    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/about">
+      <mat-icon>info</mat-icon>
+            <span>About</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header class="specific-class">
@@ -21,24 +28,12 @@
             <span>Admin</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-panel-title routerLinkActive="list-item-active" routerLink="/profile">
+        <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarUtilizador">
           <mat-icon>person</mat-icon>
-          <span>Profile</span>
+          <span>Criar Utilizador</span>
         </mat-panel-title>
       </mat-expansion-panel>
     </mat-accordion>
-
-    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/about">
-      <mat-icon>info</mat-icon>
-            <span>About</span>
-    </button>
-
-    <mat-divider></mat-divider>
-
-    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/help">
-      <mat-icon>help</mat-icon>
-      <span>Help</span>
-    </button>
 
     <button mat-button routerLinkActive="list-item-active" class="menu-button logout">
       <mat-icon>exit_to_app</mat-icon>

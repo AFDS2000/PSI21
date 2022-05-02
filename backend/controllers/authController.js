@@ -27,7 +27,7 @@ exports.signup = [
         }
 
         const user = new User(
-            { 
+            {
                 email: req.body.email,
                 password: req.body.password,
                 name: req.body.name,
