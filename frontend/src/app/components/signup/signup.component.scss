@@ -1,7 +1,7 @@
 mat-card {
     margin: 4em auto;
     width: 40em;
-    height: 25em;
+    height: 29em;
 }
 
 @media screen and (max-width: 1000px) {
@@ -21,4 +21,16 @@ button {
     float: right;
     width: 10em;
     margin-top: 2em;
+}
+
+.is-invalid {
+    border-left: solid 6px red;
+}
+
+.col {
+    display: flex;
+    
+}
+mat-icon {
+    margin-right: 0.2em;
 }

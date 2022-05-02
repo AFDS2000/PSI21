@@ -1,34 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from './custom-validators'
+import Swal from 'sweetalert2';
 
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+    selector: 'app-signup',
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  signupForm!: FormGroup;
-  typeUsers = ['Utilizador', 'Administrador'];
+    signupForm!: FormGroup;
+    typeUsers = ['Utilizador', 'Administrador'];
 
-  constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.signupForm = this.createFormGroup();
-  }
+    ngOnInit(): void {
+        this.signupForm = this.createFormGroup();
+    }
 
-  createFormGroup(): FormGroup {
-    return new FormGroup({
-      name: new FormControl("", [Validators.required, Validators.minLength(2)]),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required, Validators.minLength(6)]),
-      type: new FormControl("", Validators.required)
-    });
-  }
+    createFormGroup(): FormGroup {
+        return new FormGroup({
+            name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+            password: new FormControl("", [
+                Validators.required, 
+                Validators.minLength(8), 
+                Validators.required,
+                // check whether the entered password has a number
+                CustomValidators.patternValidator(/\d/, {
+                  hasNumber: true
+                }),
+                // check whether the entered password has upper case letter
+                CustomValidators.patternValidator(/[A-Z]/, {
+                  hasCapitalCase: true
+                }),
+                // check whether the entered password has a lower case letter
+                CustomValidators.patternValidator(/[a-z]/, {
+                  hasSmallCase: true
+                })
+            ]),
+            type: new FormControl("", Validators.required)
+        });
+    }
 
-  signup() {
-    this.authService.signup(this.signupForm.value).subscribe((msg) => console.log(msg));
-  }
+    signup() {
+        this.authService.signup(this.signupForm.value).subscribe((msg) => {
+            if (msg) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Utilizador registado com sucesso',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                this.signupForm.reset()
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Erro ao criar utilizador',
+                });
+            }
+        });
+    }
 
 }
