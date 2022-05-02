@@ -1,5 +1,7 @@
 var express = require('express');
+const team = require('../models/team');
 var router = express.Router();
+
 
 //var project_controller = requeire();
 
@@ -20,5 +22,10 @@ router.post('/createProject', project_controller.project_create);
 
 
 //Routers Team
+  
+  const TeamController = require('../controllers/teamController');
+
+  router.post('/createTeam', TeamController.createTeam);
+
 
 module.exports = router;
