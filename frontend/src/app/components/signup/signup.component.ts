@@ -24,20 +24,20 @@ export class SignupComponent implements OnInit {
         return new FormGroup({
             name: new FormControl("", [Validators.required, Validators.minLength(3)]),
             password: new FormControl("", [
-                Validators.required, 
-                Validators.minLength(8), 
+                Validators.required,
+                Validators.minLength(8),
                 Validators.required,
                 // check whether the entered password has a number
                 CustomValidators.patternValidator(/\d/, {
-                  hasNumber: true
+                    hasNumber: true
                 }),
                 // check whether the entered password has upper case letter
                 CustomValidators.patternValidator(/[A-Z]/, {
-                  hasCapitalCase: true
+                    hasCapitalCase: true
                 }),
                 // check whether the entered password has a lower case letter
                 CustomValidators.patternValidator(/[a-z]/, {
-                  hasSmallCase: true
+                    hasSmallCase: true
                 })
             ]),
             type: new FormControl("", Validators.required)
@@ -63,5 +63,4 @@ export class SignupComponent implements OnInit {
             }
         });
     }
-
 }
