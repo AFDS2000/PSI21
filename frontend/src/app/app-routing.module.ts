@@ -7,11 +7,13 @@ import { AdminGuardService } from './services/admin-guard.service';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { TaskComponent } from './components/task/task.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: 'login', component: LoginComponent },
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
+    { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
     { path: '**', component: NotFoundComponent },
 ];
 

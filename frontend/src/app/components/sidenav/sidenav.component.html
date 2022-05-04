@@ -14,16 +14,12 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/about">
-      <mat-icon>info</mat-icon>
-            <span>About</span>
+    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/tasks">
+      <mat-icon>library_books</mat-icon>
+            <span>Tarefas</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/teams">
-      <mat-icon>person</mat-icon>
-      <span>Equipas</span>
-    </button>
 
     <mat-accordion *ngIf="isAdmin">
       <mat-expansion-panel>
@@ -51,5 +47,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

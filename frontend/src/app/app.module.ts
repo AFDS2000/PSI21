@@ -12,7 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
@@ -22,14 +22,18 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
-
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { TaskComponent } from './components/task/task.component';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     SidenavComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +48,12 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     MatExpansionModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule, 
+    MatFormFieldModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [
       {

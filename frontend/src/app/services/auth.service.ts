@@ -15,7 +15,7 @@ export class AuthService {
     private url = 'http://localhost:3021/auth/';
 
     isUserLoogedIn$ = new BehaviorSubject<boolean>(false);
-    userId!: string;
+    userId!: string | null;
     userType!: string | null;
 
     httpOptions = {
@@ -34,6 +34,12 @@ export class AuthService {
         if (localStorage.getItem("userType")) {
             this.userType = localStorage.getItem("userType");
         }
+
+        if (localStorage.getItem("userId")) {
+            this.userId
+            =localStorage.getItem("userId");
+        }
+
     }
 
     signup(user: Omit<User, "_id">): Observable<User> {
