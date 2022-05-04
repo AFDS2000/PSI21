@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroupDirective, NgForm, NG_VALIDATORS
 import { ErrorStateMatcher } from '@angular/material/core';
 import {TaskService} from '../../services/task.service';
 import { Task } from '../../models/task';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface Level {
   value: string;
@@ -22,10 +23,10 @@ export class TaskComponent implements OnInit {
     {value: ''},
     {value: 'urgente'}, 
     {value: 'alta'},
-    {value: 'media'},
+    {value: 'média'},
     {value: 'baixa'}
   ];
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService,private authService: AuthService) { }
 
   ngOnInit(): void {
     this.levelFormControl =  new FormControl('', [Validators.required,Validators.nullValidator]);
@@ -34,11 +35,12 @@ export class TaskComponent implements OnInit {
     this.getTasks();
   }
 
-  Submit(name:string,level:string,percentageConclusion=0,users=["626c11324067277550168083"]): void{ 
-    if(this.levelFormControl.status!='INVALID' && this.nameFormControl.status!='INVALID'){
+  Submit(name:string,level:string,percentageConclusion=0,users=[""]): void{ 
+    if(this.levelFormControl.status!='INVALID' && this.nameFormControl.status!='INVALID' && this.authService.userId != null){
       name = name.trim();
+      users=[this.authService.userId];
       if (!name) { return; }
-      this.taskService.addTask({ name,level,percentageConclusion,users } as Task)
+      this.taskService.addTask({ name, level, percentageConclusion, users } as Task)
         .subscribe(task => {
           this.tasks.push(task);
         });
@@ -63,28 +65,3 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-
-export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const forbidden = nameRe.test(control.value);
-    if (forbidden)
-    return {forbiddenName: {value: control.value}} 
-    else
-    return null;
-  };
-}
-
-@Directive({
-  selector: '[appForbiddenName]',
-  providers: [{provide: NG_VALIDATORS, useExisting: ForbiddenValidatorDirective, multi: true}]
-})
-export class ForbiddenValidatorDirective implements Validator {
-  @Input('appForbiddenName') forbiddenName = '';
-
-  validate(control: AbstractControl): ValidationErrors | null {
-    return this.forbiddenName ? forbiddenNameValidator(new RegExp(this.forbiddenName, 'i'))(control)
-                              : null;
-  }
-}
-
-

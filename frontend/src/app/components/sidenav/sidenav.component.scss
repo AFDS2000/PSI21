@@ -70,6 +70,7 @@ mat-panel-title {
     width: 100%;
     display: flex;
     margin-top: 0.3em;
+    padding-left: 1.5em;
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
@@ -80,7 +81,7 @@ mat-panel-title {
 }
 
 .menu-button:hover {
-    background-color: #2c3344;
+    color: #66FCF1;
 }
 
 .name {
@@ -107,10 +108,13 @@ mat-divider {
 }
 
 .list-item-active {
-    color: #f2f5f7 !important;
-    
 
-    ::ng-deep {
-        background: #3f485e !important;
+    color: #66FCF1;
+
+    .specific-class > mat-panel-title {
+        color: #66FCF1 !important;
+        ::ng-deep .mat-expansion-indicator:after {
+            color: #66FCF1 !important;
+        }
     }
 }

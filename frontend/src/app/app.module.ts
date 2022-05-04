@@ -1,63 +1,67 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { HomeComponent } from './components/home/home.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+
+import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { TeamComponent } from './components/team/team.component';
-import { TeamsComponent } from './components/teams/teams.component';
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  MatInputModule }  from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select'; 
-import {MatCardModule} from '@angular/material/card'; 
 @NgModule({
   declarations: [
-    AppComponent, 
-    HomeComponent, 
-    NotFoundComponent, 
-    SidenavComponent, 
-    TeamComponent, 
-    TeamsComponent,
-    AppComponent, 
-    HomeComponent, 
-    NotFoundComponent, 
-    SidenavComponent, TaskComponent
+    AppComponent,
+    NotFoundComponent,
+    SidenavComponent,
+    SignupComponent,
+    LoginComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    HttpClientModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatExpansionModule,
     FormsModule, 
     MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
   ],
-  providers: [],
+  providers: [
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptorService,
+          multi: true
+      }
+    ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

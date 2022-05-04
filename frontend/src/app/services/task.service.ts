@@ -19,8 +19,8 @@ export class TaskService {
     var url = 'http://localhost:3021/task/all'
     return this.http.get<Task[]>(url)
     .pipe(
-      tap(_ => this.log('fetched heroes')),
-      catchError(this.handleError<Task[]>('getHeroes', []))
+      tap(_ => this.log('fetched tasks')),
+      catchError(this.handleError<Task[]>('getTasks', []))
     );
   }
 
@@ -31,7 +31,7 @@ export class TaskService {
   };
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.tasksUrl, task, this.httpOptions).pipe(
-      catchError(this.handleError<Task>('addHero'))
+      catchError(this.handleError<Task>('addTask'))
     );
   }
 
@@ -39,19 +39,16 @@ export class TaskService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
   private log(message: string) {
-    console.log(`HeroService: ${message}`);
+    console.log(`TaskService: ${message}`);
   }
 
   constructor(private http: HttpClient) { }

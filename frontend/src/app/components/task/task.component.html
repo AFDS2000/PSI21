@@ -6,8 +6,13 @@
         <form class="my-form" #loginForm=ngForm (ngSubmit)="Submit(taskName.value,taskLevel.value);taskName.value='';taskLevel.value='';">
             <mat-form-field class="task-add" appearance="fill">
                 <mat-label>Name</mat-label>
-                <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher"
-                    #taskName>
+                <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher" #taskName>
+                <mat-error *ngIf="nameFormControl.hasError('required')">
+                    Necessario colocar um nome
+                </mat-error>
+                <mat-error *ngIf="nameFormControl.hasError('minlength')">
+                    Nome deve ter uma dimensão superior ou igual a 4
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="task-add" appearance="fill">
                 <mat-label>Level</mat-label>
@@ -16,6 +21,9 @@
                         {{level.value}}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="levelFormControl.hasError('required')">
+                    Escolha um dos quatro niveis possiveis
+                </mat-error>
             </mat-form-field>
             <button color="primary" mat-raised-button type="submit">
                 <span>Adicionar</span>
