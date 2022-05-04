@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { CreateTeamComponent } from './create-team/create-team.component';
+import { CreateTeamComponent } from './components/create-team/create-team.component';
 
 
 
