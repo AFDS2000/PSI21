@@ -15,7 +15,8 @@ export class AuthService {
     private url = 'http://localhost:3021/auth/';
 
     isUserLoogedIn$ = new BehaviorSubject<boolean>(false);
-    userType!: Pick<User, "type">;
+    userId!: string;
+    userType!: string | null;
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -24,8 +25,16 @@ export class AuthService {
     constructor(
         private http: HttpClient, 
         private errorHandlerService: ErrorHandlerService,
-        private router: Router    
-    ) { }
+        private router: Router  
+    ) { 
+        if (localStorage.getItem("token")) {
+            this.isUserLoogedIn$.next(true);
+        }
+
+        if (localStorage.getItem("userType")) {
+            this.userType = localStorage.getItem("userType");
+        }
+    }
 
     signup(user: Omit<User, "_id">): Observable<User> {
         const url_signup = this.url + 'signup';
@@ -36,19 +45,24 @@ export class AuthService {
     }
 
     login(name: Pick<User, "name">, password: Pick<User, "password">): Observable<{
-        token: string; type: Pick<User, "type">
+        token: string; type: string
     }> {
         const url_login = this.url + 'login';
         return this.http.post<any>(url_login, { name, password }, this.httpOptions).pipe(
             first(),
-            tap((tokenObject: { token: string; type: Pick<User, "type"> }) => {
+            tap((tokenObject: { token: string; id: string; type: string }) => {
+                this.userId = tokenObject.id;
                 this.userType = tokenObject.type;
+                
                 localStorage.setItem("token", tokenObject.token);
+                localStorage.setItem("userId", this.userId);
+                localStorage.setItem("userType", this.userType);
+                
                 this.isUserLoogedIn$.next(true);
-                this.router.navigate(["signup"])
+                this.router.navigate(["criarUtilizador"])
             }),
             catchError(this.errorHandlerService.handleError<{
-                token: string; type: Pick<User, "type">
+                token: string; type: string
             }> ("login"))
         )
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { CustomValidators } from './custom-validators'
+
 import Swal from 'sweetalert2';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
     styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+    @ViewChild('formDirective') formDirective!: NgForm;
     signupForm!: FormGroup;
     typeUsers = ['Utilizador', 'Administrador'];
 
@@ -22,7 +24,7 @@ export class SignupComponent implements OnInit {
 
     createFormGroup(): FormGroup {
         return new FormGroup({
-            name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+            name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\_\- ]*$/)]),
             password: new FormControl("", [
                 Validators.required,
                 Validators.minLength(8),
@@ -54,6 +56,7 @@ export class SignupComponent implements OnInit {
                     timer: 1500
                 });
                 this.signupForm.reset()
+                this.formDirective.resetForm();
             } else {
                 Swal.fire({
                     icon: 'error',

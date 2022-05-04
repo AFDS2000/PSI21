@@ -1,3 +1,4 @@
+
 <mat-toolbar class="mat-elevation-z8">
   <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
@@ -5,7 +6,7 @@
   </button> PSI021
 </mat-toolbar>
 
-<mat-sidenav-container>
+<mat-sidenav-container >
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
     <h4 class="name">John Smith</h4>
@@ -20,7 +21,7 @@
 
     <mat-divider></mat-divider>
 
-    <mat-accordion>
+    <mat-accordion *ngIf="isAdmin">
       <mat-expansion-panel>
         <mat-expansion-panel-header class="specific-class">
           <mat-panel-title>
@@ -35,7 +36,7 @@
       </mat-expansion-panel>
     </mat-accordion>
 
-    <button mat-button routerLinkActive="list-item-active" class="menu-button logout">
+    <button mat-button (click)="logout()" class="menu-button logout">
       <mat-icon>exit_to_app</mat-icon>
       <span>Logout</span>
     </button>

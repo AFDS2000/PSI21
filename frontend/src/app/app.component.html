@@ -1,4 +1,2 @@
-<app-login></app-login>
-<!-- 
-<app-sidenav></app-sidenav>
--->
+<app-login *ngIf="!isAuthenticated"></app-login>
+<app-sidenav *ngIf="isAuthenticated"></app-sidenav>

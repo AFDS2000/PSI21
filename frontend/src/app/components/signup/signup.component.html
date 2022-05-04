@@ -3,7 +3,7 @@
         Criar Utilizador
     </mat-card-title>
     <mat-card-content>
-        <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+        <form [formGroup]="signupForm" #formDirective="ngForm" (ngSubmit)="signup()" novalidate>
             <mat-form-field>
                 <mat-label>Nome</mat-label>
                 <input matInput formControlName="name">
