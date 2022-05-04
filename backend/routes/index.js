@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var teamController = require('../controllers/teamController');
+var taskController = require('../controllers/taskController');
+
 //var project_controller = requeire();
 
 /* GET home page. */
@@ -9,6 +11,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/teams', teamController.teams_list);
+
+router.get('/task/all', taskController.all);
+
+router.post('/task', taskController.add);
+
+router.delete('/task/:id', taskController.delete);
 
 //Routers Projects
 /*

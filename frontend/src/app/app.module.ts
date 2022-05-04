@@ -17,12 +17,25 @@ import { TeamComponent } from './components/team/team.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TaskComponent } from './components/task/task.component';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  MatInputModule }  from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatCardModule} from '@angular/material/card'; 
 @NgModule({
   declarations: [
     AppComponent, 
     HomeComponent, 
     NotFoundComponent, 
-    SidenavComponent, TeamComponent, TeamsComponent
+    SidenavComponent, 
+    TeamComponent, 
+    TeamsComponent,
+    AppComponent, 
+    HomeComponent, 
+    NotFoundComponent, 
+    SidenavComponent, TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +48,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDividerModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatExpansionModule,
+    FormsModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
