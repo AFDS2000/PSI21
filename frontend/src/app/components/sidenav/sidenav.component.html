@@ -34,6 +34,19 @@
           <span>Criar Utilizador</span>
         </mat-panel-title>
       </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>people</mat-icon>
+          <span>Equipas</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarEquipa">
+        <mat-icon>group_add</mat-icon>
+        <span>Criar Equipa</span>
+      </mat-panel-title>
+      </mat-expansion-panel>
     </mat-accordion>
 
     <button mat-button (click)="logout()" class="menu-button logout">

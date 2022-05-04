@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatCommonModule } from '@angular/material/core';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -33,6 +34,7 @@ import { TaskComponent } from './components/task/task.component';
     SidenavComponent,
     SignupComponent,
     LoginComponent,
+    CreateTeamComponent,
     TaskComponent
   ],
   imports: [
@@ -54,6 +56,7 @@ import { TaskComponent } from './components/task/task.component';
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
+    MatCommonModule,
   ],
   providers: [
       {
