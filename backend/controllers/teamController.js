@@ -1,9 +1,6 @@
-const { body , validationResult, check  } = require('express-validator');
+const { body , validationResult  } = require('express-validator');
 
 const Team = require('../models/team');
-const User = require('../models/user');
-
-
 
 //verificar que o utilizador que esta a fazer a criação da quipa é um administrador
 exports.createTeam = [
@@ -34,14 +31,4 @@ exports.createTeam = [
             });
         });
     }
-];
-
-//operação para associar um utilizador a uma equipa
-exports.addUsers = function(req, res, next) {
-    
-}
-
-//operção para desassociar um utilizador de um equipa
-exports.deleteUser = [
-
 ];

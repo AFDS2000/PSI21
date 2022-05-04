@@ -1,13 +1,8 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button
-    mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
-    (click)="sidenav.toggle()"
-  >
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-  </button>
-  PSI021
+  </button> PSI021
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -18,39 +13,40 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/home">
-      <mat-icon>home</mat-icon>
-      <span>Home</span>
-    </button>
-    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/exmeplo">
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
-    </button>
-    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="/exemplo2">
+    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/about">
       <mat-icon>info</mat-icon>
-      <span>About</span>
+            <span>About</span>
     </button>
-    <button mat-button routerLinkActive="list-item-active" class = "menu-button" routerLink = "/criarEquipa">
-      <mat-icon>people</mat-icon>
-      <span>Criar Equipa</span> 
-    </button>
-    
 
     <mat-divider></mat-divider>
-
-    <button mat-button routerLinkActive="list-item-active" class="menu-button" routerLink="**">
-      <mat-icon>help</mat-icon>
-      <span>Help</span>
-    </button>
+    
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="specific-class">
+          <mat-panel-title>
+            <mat-icon>people</mat-icon>
+            <span>Equipas</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarEquipa">
+          <mat-icon>group_add</mat-icon>
+          <span>Criar Equipa</span>
+        </mat-panel-title>
+        
+      </mat-expansion-panel>
+    </mat-accordion>
 
     <button mat-button routerLinkActive="list-item-active" class="menu-button logout">
       <mat-icon>exit_to_app</mat-icon>
       <span>Logout</span>
     </button>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

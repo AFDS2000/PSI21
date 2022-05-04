@@ -1,14 +1,11 @@
 var express = require('express');
-const team = require('../models/team');
 var router = express.Router();
+const TeamController = require('../controllers/teamController');
 
 
 //var project_controller = requeire();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+
 
 //Routers Projects
 /*
@@ -22,10 +19,7 @@ router.post('/createProject', project_controller.project_create);
 
 
 //Routers Team
-  
-  const TeamController = require('../controllers/teamController');
-
-  router.post('/createTeam', TeamController.createTeam);
+router.post('/criarEquipa', TeamController.createTeam);
 
 
 module.exports = router;
