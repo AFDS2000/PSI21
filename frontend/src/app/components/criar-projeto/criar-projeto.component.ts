@@ -26,21 +26,23 @@ export class CriarProjetoComponent implements OnInit {
         name: new FormControl("", [
             Validators.required, 
             Validators.minLength(4),
-            Validators.pattern("^[a-zA-Z0-9 ]*$")]),
+            Validators.pattern(/^[a-zA-Z0-9 ]*$/)]),
 
-        acronimo: new FormControl("", [
+        alias: new FormControl("", [
             Validators.required, 
             Validators.minLength(3),
             Validators.maxLength(3), 
-            Validators.pattern("^[a-zA-Z0-9 ]*$")]),
-        type: new FormControl("", Validators.required)
+            Validators.pattern(/^[a-zA-Z0-9 ]*$/)]),
+       
+        startDate: new FormControl("", [
+            Validators.required,
+        ])
     });
 }
 
 criarProjeto() {
     this.criarProjetoService.addProject(this.projectForm.value).subscribe((msg) => {
         if (msg) {
-            console.log(msg);
             Swal.fire({
                 icon: 'success',
                 title: 'Projeto criado com sucesso',

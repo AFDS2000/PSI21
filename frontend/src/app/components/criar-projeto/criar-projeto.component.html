@@ -12,12 +12,12 @@
 
             <mat-form-field>
                 <mat-label>Acronimo</mat-label>
-                <input matInput formControlName="acronimo">
+                <input matInput formControlName="alias">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Data de inicio do projeto</mat-label>
-                <input matInput [matDatepicker]="picker">
+                <input matInput formControlName="startDate" [matDatepicker]="picker">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
