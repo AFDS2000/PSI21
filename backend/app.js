@@ -1,4 +1,3 @@
-var createError = require('http-errors');
 var express = require('express');
 var cors = require('cors');
 var path = require('path');
@@ -6,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/auth');
 
 var app = express();
 app.use(cors({
@@ -34,7 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,12 +44,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-    const data = err.data;
     res.status(err.statusCode || 500);
-    res.json({
-        message: err.message,
-        data: data
-    })
+    console.log(err.message)
+    res.json(err.message)
 });
 
 module.exports = app;
