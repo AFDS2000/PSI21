@@ -1,0 +1,24 @@
+<mat-toolbar class="mat-elevation-z8">
+    PSI021
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-title>
+        Iniciar Sessão
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Palavra-passe</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+            <button color="primary" [disabled]="!loginForm.valid" mat-raised-button type="submit">
+                <span>Login</span>
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
