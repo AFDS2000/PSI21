@@ -38,9 +38,7 @@ export class CriarProjetoComponent implements OnInit {
             Validators.required,
         ]),
 
-        endDate: new FormControl("", [
-           
-        ])
+        endDate: new FormControl("")
     });
 }
 
