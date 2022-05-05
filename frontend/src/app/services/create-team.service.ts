@@ -1,35 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { catchError, first} from 'rxjs/operators';
+import { catchError, first } from 'rxjs/operators';
 
 import { ErrorHandlerService } from './error-handler.service';
 import { Team } from '../models/team';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CreateTeamService {
 
-  private url = 'http://localhost:3021/criarEquipa/';
+    private url = 'http://localhost:3021/team';
 
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
+    httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
 
-  constructor(
-    private http: HttpClient,
-    private errorHandlerService: ErrorHandlerService,
-    private router: Router,
-  ) {}
+    constructor(
+        private http: HttpClient,
+        private errorHandlerService: ErrorHandlerService,
+    ) { }
 
-  
-  addTeam(criarEquipa: Team): Observable<Team> {
-    return this.http.post<Team>(this.url, criarEquipa, this.httpOptions).pipe(
-      first(), catchError(this.errorHandlerService.handleError<Team>('addTeam')));
-  } 
+
+    addTeam(criarEquipa: Team): Observable<{errors: string}> {
+        const url_criarEquipa = `${this.url}/criarEquipa`
+        return this.http.post<any>(url_criarEquipa, criarEquipa, this.httpOptions).pipe(
+            first(),
+            catchError(this.errorHandlerService.handleError<{errors: string}>('addTeam'))
+        );
+    }
 }

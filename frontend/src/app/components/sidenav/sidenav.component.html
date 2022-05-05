@@ -1,63 +1,55 @@
-
 <mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-  </button> PSI021
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button> PSI021
 </mat-toolbar>
 
-<mat-sidenav-container >
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-    <h4 class="name">John Smith</h4>
-    <p class="designation">Software Engineer</p>
+        <h4 class="name">John Smith</h4>
+        <p class="designation">Software Engineer</p>
 
-    <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/tasks">
-      <mat-icon>library_books</mat-icon>
+        <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/tasks">
+            <mat-icon>library_books</mat-icon>
             <span>Tarefas</span>
-    </button>
+        </button>
 
-    <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-    <mat-accordion *ngIf="isAdmin">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header class="specific-class">
-          <mat-panel-title>
-            <mat-icon>supervised_user_circle</mat-icon>
-            <span>Admin</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarUtilizador">
-          <mat-icon>person</mat-icon>
-          <span>Criar Utilizador</span>
-        </mat-panel-title>
-      </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>people</mat-icon>
-          <span>Equipas</span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      
-      <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarEquipa">
-        <mat-icon>group_add</mat-icon>
-        <span>Criar Equipa</span>
-      </mat-panel-title>
-      </mat-expansion-panel>
-    </mat-accordion>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>people</mat-icon>
+                        <span>Equipas</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarEquipa">
+                    <mat-icon>group_add</mat-icon>
+                    <span>Criar Equipa</span>
+                </mat-panel-title>
+            </mat-expansion-panel>
+        </mat-accordion>
 
-    <button mat-button (click)="logout()" class="menu-button logout">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Logout</span>
-    </button>
-  </mat-sidenav>
+        <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
+            routerLink="/criarUtilizador">
+            <mat-icon>person</mat-icon>
+            <span>Criar Utilizador</span>
+        </button>
 
-  <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
+        <button mat-button (click)="logout()" class="menu-button logout">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
 </mat-sidenav-container>

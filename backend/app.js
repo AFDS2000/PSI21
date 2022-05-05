@@ -1,26 +1,26 @@
-var express = require('express');
-var cors = require('cors');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var tasksRouter = require('./routes/tasks');
-var teamRouter = require('./routes/team');
-var usersRouter = require('./routes/auth');
+const usersRouter = require('./routes/auth');
+const tasksRouter = require('./routes/tasks');
+const teamRouter = require('./routes/team');
 
-var app = express();
+const app = express();
 app.use(cors({
     origin: 'http://localhost:3071'
 }));
 
 // Set up mongoose connection
-var mongoose = require('mongoose');
-var dev_db_url = 'mongodb+srv://psi021:psi021@cluster0.00uss.mongodb.net/psi021?retryWrites=true';
-//var dev_db_url = 'mongodb://psi021:psi021@localhost:27017/psi021?retryWrites=true&authSource=psi021';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+const mongoose = require('mongoose');
+const dev_db_url = 'mongodb+srv://psi021:psi021@cluster0.00uss.mongodb.net/psi021?retryWrites=true';
+//const dev_db_url = 'mongodb://psi021:psi021@localhost:27017/psi021?retryWrites=true&authSource=psi021';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
@@ -33,9 +33,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/task', tasksRouter);
-app.use('/criarEquipa', teamRouter);
 app.use('/auth', usersRouter);
+app.use('/task', tasksRouter);
+app.use('/team', teamRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,7 +47,6 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
     res.status(err.statusCode || 500);
-    console.log(err.message)
     res.json(err.message)
 });
 

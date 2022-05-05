@@ -36,8 +36,7 @@ export class AuthService {
         }
 
         if (localStorage.getItem("userId")) {
-            this.userId
-            =localStorage.getItem("userId");
+            this.userId = localStorage.getItem("userId");
         }
 
     }
