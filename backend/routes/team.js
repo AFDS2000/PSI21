@@ -7,4 +7,5 @@ const auth = require('../middleware/auth');
 
 router.post('/criarEquipa', TeamController.createTeam);
 
+router.get('/', TeamController.getTeams);
 module.exports = router;

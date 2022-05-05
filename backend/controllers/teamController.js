@@ -29,3 +29,12 @@ exports.createTeam = [
         });
     }
 ];
+
+exports.getTeams = (req, res, next) => {
+    Team.find().populate('users')
+        .sort([['name', 'ascending']])
+        .exec((error, teams) => {
+            if (error) return next(error);
+            res.status(200).json(teams);
+        });
+};

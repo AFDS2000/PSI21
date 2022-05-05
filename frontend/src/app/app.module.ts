@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
 import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
+import { ProjetosComponent } from './components/projetos/projetos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.
     LoginComponent,
     CreateTeamComponent,
     CriarProjetoComponent,
-    TaskComponent
+    TaskComponent,
+    ProjetosComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
-    MatCommonModule,
+    MatCommonModule
   ],
   providers: [
       {
