@@ -13,10 +13,12 @@ import Swal from 'sweetalert2';
 export class CriarProjetoComponent implements OnInit {
   projectForm!: FormGroup;
    
+// criar sistema para distinguir admin e utilizador
 
   constructor(private  criarProjetoService: CriarProjetoService) { }
 
   minDate = new Date();
+  //minDate2 = new Date();
 
   ngOnInit(): void {
     this.projectForm = this.createFormGroup()

@@ -14,7 +14,7 @@
                 <mat-label>Acronimo</mat-label>
                 <input matInput formControlName="alias">
             </mat-form-field>
-
+<!--
             <mat-form-field appearance="fill">
                 <mat-label>Data de inicio do projeto</mat-label>
                 <input matInput formControlName="startDate" [matDatepicker]="picker" [min]="minDate">
@@ -25,11 +25,22 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Data de conclusão do projeto</mat-label>
-                <input matInput formControlName="endDate" [matDatepicker]="picker2">
+                <input matInput formControlName="endDate" [matDatepicker]="picker2" [min]="minDate2">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
+-->
+            <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker"  [min]="minDate">
+                  <input matStartDate formControlName="startDate" placeholder="Start date">
+                  <input matEndDate formControlName="endDate" placeholder="End date" >
+                </mat-date-range-input>
+                <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
 
             <button color="primary" [disabled]="!projectForm.valid" mat-raised-button type="submit">
                 <span>Criar Projeto</span>

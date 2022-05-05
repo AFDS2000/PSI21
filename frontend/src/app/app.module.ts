@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCommonModule } from '@angular/material/core';
+import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
 import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
+//import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.
     LoginComponent,
     CreateTeamComponent,
     CriarProjetoComponent,
-    TaskComponent
+    TaskComponent,
+  //  ListaProjetosComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,11 @@ import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptorService,
           multi: true
-      }
+      },
+      {
+        provide: MAT_DATE_LOCALE, 
+        useValue: 'en-GB'
+    }
     ],
   bootstrap: [AppComponent],
 })
