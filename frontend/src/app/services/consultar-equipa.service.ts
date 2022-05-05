@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { catchError, find, first} from 'rxjs/operators';
+import { catchError, find, first, tap} from 'rxjs/operators';
 
 import { ErrorHandlerService } from './error-handler.service';
 import { Team } from '../models/team';
@@ -12,11 +12,9 @@ import { Team } from '../models/team';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateTeamService {
+export class ConsultarEquipaService {
 
-  private url = 'http://localhost:3021/criarEquipa/';
-
-  
+  private url = 'http://localhost:3021/consultar/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -25,13 +23,14 @@ export class CreateTeamService {
   constructor(
     private http: HttpClient,
     private errorHandlerService: ErrorHandlerService,
-    private router: Router,
-  ) {}
-
+    private router: Router,) { }
   
-  addTeam(criarEquipa: Team): Observable<Team> {
-    return this.http.post<Team>(this.url, criarEquipa, this.httpOptions).pipe(
-      first() , catchError(this.errorHandlerService.handleError<Team>('addTeam')));
+  
+  
+  getTeams(): Observable<Team[]> {
+    return this.http.get<Team[]>(this.url).pipe(
+      first(), catchError(this.errorHandlerService.handleError<Team[]>('getTeams')));
   }
+
 
 }

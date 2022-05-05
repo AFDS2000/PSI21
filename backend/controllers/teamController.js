@@ -32,3 +32,12 @@ exports.createTeam = [
         });
     }
 ];
+
+exports.getTeam = (req, res, next) => {
+    Team.find().sort([
+        ['name', 'ascending']
+    ]).exec((err, teams)=>{
+        if (err) return next(err);
+        res.json(teams);
+    })
+}

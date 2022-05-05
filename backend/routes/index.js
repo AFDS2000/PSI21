@@ -21,5 +21,7 @@ router.post('/createProject', project_controller.project_create);
 //Routers Team
 router.post('/criarEquipa', TeamController.createTeam);
 
+router.get('/consultar', TeamController.getTeam);
+
 
 module.exports = router;

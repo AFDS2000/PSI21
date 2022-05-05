@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Team } from 'src/app/models/team';
+
 
 import { CreateTeamService } from 'src/app/services/create-team.service';
 import Swal from 'sweetalert2';
@@ -12,12 +14,13 @@ import Swal from 'sweetalert2';
 export class CreateTeamComponent implements OnInit {
 
   teamForm!: FormGroup;
-
+  
 
   constructor(private criarEquipaService: CreateTeamService) { }
 
   ngOnInit(): void {
     this.teamForm = this.createFormGroup();
+    
   } 
   
   createFormGroup(): FormGroup {
@@ -27,10 +30,11 @@ export class CreateTeamComponent implements OnInit {
           Validators.minLength(4),
           Validators.pattern(/^[a-zA-Z0-9 ]*$/)
 
-        ]) 
-      });
+        ])
+      }
+      );
   }
-
+  
   criarEquipa() {
     this.criarEquipaService.addTeam(this.teamForm.value).subscribe((msg) => {
       if (msg) {
@@ -39,6 +43,7 @@ export class CreateTeamComponent implements OnInit {
             title: 'Equipa criado com sucesso',
             showConfirmButton: false,
         });
+        
         this.teamForm.reset()
       } else {
           Swal.fire({
@@ -49,4 +54,9 @@ export class CreateTeamComponent implements OnInit {
       }
     });
   }
+
+  
+
+
+
 }

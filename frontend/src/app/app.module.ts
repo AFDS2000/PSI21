@@ -8,8 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
-
-
+import { ConsultarEquipasComponent } from './components/consultar-equipas/consultar-equipas.component';
 
 import { MatCardModule} from '@angular/material/card'; 
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -24,14 +23,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCommonModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
 @NgModule({
   declarations: [
     AppComponent, 
     HomeComponent, 
     NotFoundComponent, 
     SidenavComponent, 
-    CreateTeamComponent
+    CreateTeamComponent, 
+    ConsultarEquipasComponent,
   ],
   imports: [
     BrowserModule,

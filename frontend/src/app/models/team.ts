@@ -1,4 +1,5 @@
 export interface Team {
-    name: string;
-    //users: Array<string>;
+    _id  : string;
+    name : string;
+    users: Array<string>;
 }
