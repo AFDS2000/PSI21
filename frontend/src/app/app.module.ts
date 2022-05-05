@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
@@ -21,12 +20,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
-
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
+import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +34,7 @@ import { TaskComponent } from './components/task/task.component';
     SignupComponent,
     LoginComponent,
     CreateTeamComponent,
+    CriarProjetoComponent,
     TaskComponent
   ],
   imports: [

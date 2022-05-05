@@ -28,7 +28,7 @@
                         <span>Equipas</span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarEquipa">
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarEquipa">
                     <mat-icon>group_add</mat-icon>
                     <span>Criar Equipa</span>
                 </mat-panel-title>
@@ -39,6 +39,11 @@
             routerLink="/criarUtilizador">
             <mat-icon>person</mat-icon>
             <span>Criar Utilizador</span>
+        </button>
+
+        <button mat-button *ngIf="isAdmin" routerLinkActive="list-item-active" class="menu-button" routerLink="/criarProjeto">
+          <mat-icon>create_new_folder</mat-icon>
+          <span>Criar Projeto</span>
         </button>
 
         <button mat-button (click)="logout()" class="menu-button logout">

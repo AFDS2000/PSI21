@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-title>
+        Criar Projeto
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="projectForm" (ngSubmit)="criarProjeto()" >
+
+            <mat-form-field>
+                <mat-label>Nome do Projeto</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Acronimo</mat-label>
+                <input matInput formControlName="alias">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Data de inicio do projeto</mat-label>
+                <input matInput formControlName="startDate" [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Data de conclusão do projeto</mat-label>
+                <input matInput formControlName="endDate" [matDatepicker]="picker2">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            <button color="primary" [disabled]="!projectForm.valid" mat-raised-button type="submit">
+                <span>Criar Projeto</span>
+            </button>
+
+        </form>
+    </mat-card-content>
+</mat-card>
