@@ -21,6 +21,8 @@ exports.criarProjeto = [
     }),
     body('startDate').trim().not().isEmpty(),
 
+    body('endDate').trim(),
+
     (req, res, next) => {
        // console.log(req.body);
         const errors = validationResult(req);
@@ -37,6 +39,7 @@ exports.criarProjeto = [
             name: req.body.name,
             alias: req.body.alias,
             startDate: req.body.startDate,
+            endDate: req.body.startDate,
         });
 
         project.save((err) => {
