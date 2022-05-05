@@ -8,7 +8,7 @@ var ProjectSchema = new Schema({
     startDate: {type: Date, required: true},
     endDate: {type: Date, required: false},
     tasks: {type: [Schema.ObjectId], required: false},
-    teams: {type: [Schema.ObjectId], required: false}
+    teams: {type: Schema.ObjectId, required: false}
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

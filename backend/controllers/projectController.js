@@ -54,3 +54,30 @@ exports.criarProjeto = [
     }
 
 ];
+
+exports.updateTeam = function(req,res,next){
+        console.log(req.body.teams==null)
+        if(req.body.teams==null){
+            Project.findByIdAndUpdate(req.body._id, {teams: null}, {}, function (err,thehero) {
+                if (err) {
+                    err.statusCode = 500;
+                    return next(err);
+                }
+                });
+                res.status(201).json({
+                    message: "Projeto criado com sucesso!"
+                });
+            
+        }else{
+       Project.findByIdAndUpdate(req.body._id, {teams: req.body.teams}, {}, function (err,thehero) {
+        if (err) {
+            err.statusCode = 500;
+            return next(err);
+        }
+        });
+        res.status(201).json({
+            message: "Projeto criado com sucesso!"
+        });
+    }
+
+  };
