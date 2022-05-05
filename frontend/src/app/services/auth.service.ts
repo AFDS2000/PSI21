@@ -64,12 +64,19 @@ export class AuthService {
                 localStorage.setItem("userType", this.userType);
                 
                 this.isUserLoogedIn$.next(true);
-                this.router.navigate(["criarUtilizador"])
+                this.router.navigate(["home/myTasks"])
             }),
             catchError(this.errorHandlerService.handleError<{
                 token: string; type: string
             }> ("login"))
         )
 
+    }
+
+    getUser(id: string): Observable<User> {
+        const url_user = `${this.url}/${id}`;
+        return this.http.get<User>(url_user).pipe(
+            catchError(this.errorHandlerService.handleError<User>('getUser'))
+        );  
     }
 }

@@ -7,6 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { delay, filter } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @UntilDestroy()
 @Component({
@@ -18,6 +19,7 @@ export class SidenavComponent implements OnInit {
     @ViewChild(MatSidenav)
     sidenav!: MatSidenav;
     isAdmin!: boolean;
+    user!: User;
     
     constructor(
         private observer: BreakpointObserver, 
@@ -26,7 +28,15 @@ export class SidenavComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.getUser();
         this.isAdmin = this.authService.userType == 'Administrador';
+    }
+
+    getUser() {
+        if (this.authService.userId != null)
+            this.authService.getUser(this.authService.userId).subscribe(
+                (user) => (this.user = user)
+            );
     }
 
     ngAfterViewInit() {

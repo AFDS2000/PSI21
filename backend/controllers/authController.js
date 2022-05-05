@@ -81,3 +81,10 @@ exports.login = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.getUser = (req, res, next) => {
+    User.findById(req.params.id).exec((err, user) => {
+        if (err) return next(err);
+        res.status(200).json(user);
+    });
+}

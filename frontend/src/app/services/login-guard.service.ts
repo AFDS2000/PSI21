@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuardService implements CanActivate {
+export class LoginGuardService implements CanActivate {
 
     constructor(private authService: AuthService, private router: Router) { }
 
     canActivate(): boolean {
-        if(this.authService.userType != 'Administrador') {
-            this.router.navigate(["about"]);
+        if(this.authService.isUserLoogedIn$.value) {
+            this.router.navigate(["home/myTasks"]);
         }
-        
-        return this.authService.userType == 'Administrador';
+
+        return !this.authService.isUserLoogedIn$.value;
     }
 }
