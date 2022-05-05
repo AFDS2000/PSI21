@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-title>
+        Criar Task
+    </mat-card-title>
+    <mat-card-content>
+        <form class="my-form" #loginForm=ngForm (ngSubmit)="Submit(taskName.value,taskLevel.value);taskName.value='';taskLevel.value='';">
+            <mat-form-field class="task-add" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher" #taskName>
+                <mat-error *ngIf="nameFormControl.hasError('required')">
+                    Necessario colocar um nome
+                </mat-error>
+                <mat-error *ngIf="nameFormControl.hasError('minlength')">
+                    Nome deve ter uma dimensão superior ou igual a 4
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="task-add" appearance="fill">
+                <mat-label>Level</mat-label>
+                <mat-select [formControl]="levelFormControl" [errorStateMatcher]="matcher" #taskLevel>
+                    <mat-option *ngFor="let level of levels" [value]="level.value">
+                        {{level.value}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="levelFormControl.hasError('required')">
+                    Escolha um dos quatro niveis possiveis
+                </mat-error>
+            </mat-form-field>
+            <button color="primary" mat-raised-button type="submit">
+                <span>Adicionar</span>
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
+<br>
+<mat-card>
+    <mat-card-title>
+        Eliminar Task
+    </mat-card-title>
+    <mat-card-content>
+        <form class="my-form" #loginForm=ngForm (ngSubmit)="Delete(taskNameDelete.value)">
+            <mat-form-field class="task-add" appearance="fill">
+                <mat-label>Tasks</mat-label>
+                <mat-select #taskNameDelete>
+                    <mat-option *ngFor="let task of tasks" [value]="task">
+                    Nome: {{task.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button color="primary" mat-raised-button type="submit">
+                <span>Delete</span>
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>

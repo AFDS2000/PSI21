@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Team } from 'src/app/models/team';
-
 
 import { CreateTeamService } from 'src/app/services/create-team.service';
 import Swal from 'sweetalert2';
