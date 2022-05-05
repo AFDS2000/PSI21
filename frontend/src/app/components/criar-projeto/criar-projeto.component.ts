@@ -16,6 +16,8 @@ export class CriarProjetoComponent implements OnInit {
 
   constructor(private  criarProjetoService: CriarProjetoService) { }
 
+  minDate = new Date();
+
   ngOnInit(): void {
     this.projectForm = this.createFormGroup()
   }

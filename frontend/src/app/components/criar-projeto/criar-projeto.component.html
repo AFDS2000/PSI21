@@ -17,7 +17,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Data de inicio do projeto</mat-label>
-                <input matInput formControlName="startDate" [matDatepicker]="picker">
+                <input matInput formControlName="startDate" [matDatepicker]="picker" [min]="minDate">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
