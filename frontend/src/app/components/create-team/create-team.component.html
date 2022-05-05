@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-title>
+        Criar Equipa
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="teamForm" (ngSubmit)="criarEquipa()" >
+
+            <mat-form-field>
+                <mat-label>Nome do Projeto</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <button color="primary" [disabled]="!teamForm.valid" mat-raised-button type="submit">
+                <span>Criar Equipa</span>
+            </button>
+
+        </form>
+    </mat-card-content>
+</mat-card>

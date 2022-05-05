@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-title>
+        Criar Tarefa
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="createForm" #formDirective="ngForm" (ngSubmit)="submit()" novalidate>
+            <mat-form-field class="task-add" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="createForm.controls['name'].hasError('required')">
+                    Necessario colocar um nome
+                </mat-error>
+                <mat-error *ngIf="createForm.controls['name'].hasError('minlength')">
+                    Nome deve ter uma dimensão superior ou igual a 4
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="task-add" appearance="fill">
+                <mat-label>Nivel</mat-label>
+                <mat-select formControlName="level">
+                    <mat-option *ngFor="let level of levels" [value]="level.value">
+                        {{level.value}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="createForm.controls['level'].hasError('required')">
+                    Escolha um dos quatro niveis possiveis
+                </mat-error>
+            </mat-form-field>
+            <button color="primary" [disabled]="!createForm.valid" mat-raised-button type="submit">
+                <span>Adicionar</span>
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
+<br>
+<mat-card>
+    <mat-card-title>
+        Eliminar Tarefa
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="deleteForm" #formDirective="ngForm" (ngSubmit)="delete()">
+            <mat-form-field class="task-add" appearance="fill">
+                <mat-label>Tarefas</mat-label>
+                <mat-select formControlName="name">
+                    <mat-option *ngFor="let task of tasks" [value]="task">
+                    Nome: {{task.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button color="primary" [disabled]="!deleteForm.valid" mat-raised-button type="submit">
+                <span>Delete</span>
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
