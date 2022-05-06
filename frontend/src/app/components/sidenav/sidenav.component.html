@@ -41,10 +41,17 @@
                         <span>Projetos</span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-
-                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/listaProjeto">
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/projetos">
                     <mat-icon>code</mat-icon>
-                    <span>Projetos</span>
+                    <span>Associar
+                        <br>
+                        Equipas</span>
+                </mat-panel-title>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/listaProjeto">
+                    <mat-icon>code</mat-icon>
+                    <span>Associar
+                    <br>
+                    Tarefas</span>
                 </mat-panel-title>
                 
             <br>

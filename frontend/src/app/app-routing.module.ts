@@ -18,10 +18,10 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'criarEquipa', component: CreateTeamComponent},
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
-    { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService, AdminGuardService] },
+    { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent },
     { path: 'listaProjeto', component: ListaProjetosComponent },
-    { path: 'projetos', component: ProjetosComponent},
+    { path: 'projetos', component: ProjetosComponent,canActivate: [AdminGuardService]},
     { path: '**', component: NotFoundComponent },
 ];
 

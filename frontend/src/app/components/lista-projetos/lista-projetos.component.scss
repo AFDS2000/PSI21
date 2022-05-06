@@ -3,7 +3,16 @@
     display:flex;
     flex-direction: row;
 }
-
+mat-card {
+    margin: 1em auto;
+    width: 40em;
+    height: 15em;
+}
+mat-form-field,
+mat-checkbox {
+    width: 100%;
+    margin-top: 1em;
+}
 .divCard{
     margin-left: 2em;
 
@@ -28,7 +37,12 @@
     width: 10em;
     height: 20em;
 }
+button {
+    width: 10em;
+    margin-left: 2em;
+    float: right;
 
+}
 
 @media screen and (max-width: 1000px) {
     .main {

@@ -32,7 +32,9 @@ mat-expansion-panel {
     background: #0f172a;
     box-shadow: none !important;
 }
-
+.grande.mat-expansion-panel-body  {
+    padding-left: 4px;
+}
 mat-expansion-panel:hover {
     background-color: #172649;
 }
