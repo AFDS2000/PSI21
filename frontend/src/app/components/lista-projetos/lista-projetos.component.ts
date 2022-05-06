@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/task';
 
-import { CriarProjetoService } from 'src/app/services/criar-projeto.service'; 
+import { ProjetosService } from 'src/app/services/projetos.service';
 import { TaskService } from 'src/app/services/task.service';
 
 import {Project} from '../../models/project';
@@ -25,7 +25,7 @@ export class ListaProjetosComponent implements OnInit {
   tasksRemove: Task[] = [];
  
 
-  constructor(private criarProjetoService : CriarProjetoService, private taskService : TaskService) { }
+  constructor(private projetosService : ProjetosService, private taskService : TaskService) { }
 
   ngOnInit(): void {
     this.viewForm = this.createFormGroup();
@@ -55,35 +55,61 @@ createFormGroupDelete(): FormGroup {
 }
 
 getProjects(): void {
-  this.criarProjetoService.getProjects()
+  this.projetosService.getProjects()
       .subscribe(projects => this.projects = projects);
 }
 
 updateTasks(): void{
-  
+  this.tasksRemove=[];
+  this.tasksAdd=[];
   this.project = this.viewForm.value.projeto;
-  if(this.project.tasks!=null){
+  if(this.project.tasks!=null ){
     for(var i =0;i< this.tasks.length;i++){
-      this.tasksRemove.push(this.tasks[i]);
-      this.tasksAdd.push(this.tasks[i]);
-        for(var j =0;j<this.project.tasks.length;j++){
-          if(this.project.tasks[j]==this.tasks[j]._id){
-
-            }
+      var existeOutro = false;
+      for(var j = 0;j<this.projects.length;j++){
+        if(this.projects[j].tasks!.includes(this.tasks[i]._id) && this.projects[j]._id != this.project._id ){
+          existeOutro = true;
         }
+      }
+      if(!existeOutro){
+        if(this.project.tasks.includes(this.tasks[i]._id)){
+            this.tasksRemove.push(this.tasks[i]);
+        }else{
+          this.tasksAdd.push(this.tasks[i])
+        }
+      }
     }
   }
-
-
-  console.log(this.tasksRemove)
-
+  this.tasks = [];
+  this.getTasks();
 }
 
 associar(): void{
-
+  if(this.project.tasks){
+  this.project.tasks.push(this.associarTask.value.task);
+  }else{
+    this.project.tasks=[this.associarTask.value.task];
+  }
+  this.projetosService.updateTasks(this.project)
+  .subscribe(() => {
+    this.getProjects();
+});
+this.updateTasks();
 }
 
 desassociar(): void{
+
+    this.project.tasks=[];
+    for(var i = 0;i<this.tasksRemove.length;i++){
+      if(this.tasksRemove[i]._id!= this.desassociarTask.value.task._id){
+        this.project.tasks.push(this.tasksRemove[i]._id)
+      }
+    }   
+    this.projetosService.updateTasks(this.project)
+    .subscribe(() => {
+      this.getProjects();
+  });
+  this.updateTasks();
 
 }
 

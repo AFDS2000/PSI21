@@ -18,7 +18,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'criarEquipa', component: CreateTeamComponent},
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
-    { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
+    { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent },
     { path: 'listaProjeto', component: ListaProjetosComponent },
     { path: 'projetos', component: ProjetosComponent},

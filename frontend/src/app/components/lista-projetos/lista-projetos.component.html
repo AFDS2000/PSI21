@@ -1,8 +1,8 @@
-
+<div class = "main">
 
         <form [formGroup]="viewForm" #formDirective="ngForm" class="form" >
             <div class="divForm">
-            <mat-form-field class="task-add" appearance="fill">
+            <mat-form-field class="projeto" appearance="fill">
                 <mat-label>Lista de Projetos</mat-label>
                 <mat-select formControlName="projeto" (selectionChange)="updateTasks()">
                     <mat-option *ngFor="let project of projects" [value]="project">
@@ -32,7 +32,7 @@
                     <form [formGroup] = "associarTask" (ngSubmit)="associar()">
                     <mat-form-field class="task-add" appearance="fill">
                         <mat-label>Lista de Tarefas</mat-label>
-                        <mat-select formControlName="addTask">
+                        <mat-select formControlName="task">
                             <mat-option *ngFor="let task of tasksAdd" [value]="task">
                             Nome: {{task.name}}
                             </mat-option>
@@ -55,7 +55,7 @@
                     <form [formGroup] = "desassociarTask" (ngSubmit)="desassociar()">
                     <mat-form-field class="task-remove" appearance="fill">
                         <mat-label>Lista de Tarefas</mat-label>
-                        <mat-select formControlName="removeTask">
+                        <mat-select formControlName="task">
                             <mat-option *ngFor="let task of tasksRemove" [value]="task">
                             Nome: {{task.name}}
                             </mat-option>
@@ -71,4 +71,4 @@
         </div>
         </form>
   
-
+    </div>
