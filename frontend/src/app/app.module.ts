@@ -26,7 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
 import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
-//import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
+import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.
     CreateTeamComponent,
     CriarProjetoComponent,
     TaskComponent,
-  //  ListaProjetosComponent
+    ListaProjetosComponent,
   ],
   imports: [
     BrowserModule,

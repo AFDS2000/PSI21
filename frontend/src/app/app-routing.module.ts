@@ -10,6 +10,7 @@ import { CreateTeamComponent } from './components/create-team/create-team.compon
 
 import { SignupComponent } from './components/signup/signup.component';
 import { TaskComponent } from './components/task/task.component';
+import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent },
+    { path: 'listaProjeto', component: ListaProjetosComponent },
     { path: '**', component: NotFoundComponent },
 ];
 
