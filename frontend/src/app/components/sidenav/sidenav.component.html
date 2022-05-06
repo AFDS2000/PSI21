@@ -33,17 +33,34 @@
                     <span>Criar Equipa</span>
                 </mat-panel-title>
             </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>dashboard</mat-icon>
+                        <span>Projetos</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/listaProjeto">
+                    <mat-icon>code</mat-icon>
+                    <span>Projetos</span>
+                </mat-panel-title>
+                
+            <br>
+
+            <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarProjeto">
+                <mat-icon>create_new_folder</mat-icon>
+                <span>Criar Projeto</span>
+            </mat-panel-title>
+
+            </mat-expansion-panel>
         </mat-accordion>
 
         <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
             routerLink="/criarUtilizador">
             <mat-icon>person</mat-icon>
             <span>Criar Utilizador</span>
-        </button>
-
-        <button mat-button *ngIf="isAdmin" routerLinkActive="list-item-active" class="menu-button" routerLink="/criarProjeto">
-          <mat-icon>create_new_folder</mat-icon>
-          <span>Criar Projeto</span>
         </button>
 
         <button mat-button (click)="logout()" class="menu-button logout">

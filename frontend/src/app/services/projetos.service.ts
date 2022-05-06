@@ -42,4 +42,11 @@ export class ProjetosService {
     );
   }
 
+  updateTasks(project: Project): Observable<Project> {
+    const url_add = `${this.urlProjet}/tasks`;
+    return this.http.put<Project>(url_add,project,this.httpOptions)
+    .pipe(
+        catchError(this.errorHandlerService.handleError<Project>('getProjects'))
+    );  }
+
 }
