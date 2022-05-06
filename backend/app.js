@@ -34,8 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/task', tasksRouter);
-app.use('/criarEquipa', teamRouter);
-app.use('/consultar', teamRouter);
+app.use('/team', teamRouter);
 app.use('/auth', usersRouter);
 
 // catch 404 and forward to error handler

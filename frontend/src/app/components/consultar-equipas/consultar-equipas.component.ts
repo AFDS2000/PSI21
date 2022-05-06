@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Team } from 'src/app/models/team';
+import { User } from 'src/app/models/user';
+import { AdicionarUserService } from 'src/app/services/adicionar-user.service';
 
 import { ConsultarEquipaService } from 'src/app/services/consultar-equipa.service';
 
@@ -8,21 +11,7 @@ import { ConsultarEquipaService } from 'src/app/services/consultar-equipa.servic
   templateUrl: './consultar-equipas.component.html',
   styleUrls: ['./consultar-equipas.component.scss']
 })
-export class ConsultarEquipasComponent implements OnInit {
+export class ConsultarEquipasComponent{
 
-  teams: Team[] = [];
 
-  constructor(private consultarEquipaService: ConsultarEquipaService) { }
-
-  ngOnInit(): void {
-    this.getTeams();
-  }
-
-  getTeams(): void{
-    this.consultarEquipaService.getTeams().subscribe((teams) => 
-      (this.teams = teams));
-    
-    
-  }
- 
 }

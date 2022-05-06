@@ -27,6 +27,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
+import { MatTableModule } from '@angular/material/table';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
+import { ShowTeamsComponent } from './components/show-teams/show-teams.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { TaskComponent } from './components/task/task.component';
     LoginComponent,
     CreateTeamComponent,
     ConsultarEquipasComponent,
-    TaskComponent
+    TaskComponent,
+    TeamDetailComponent,
+    ShowTeamsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,7 @@ import { TaskComponent } from './components/task/task.component';
     MatSelectModule,
     MatCardModule,
     MatCommonModule,
+    MatTableModule,
   ],
   providers: [
       {

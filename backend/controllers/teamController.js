@@ -33,11 +33,35 @@ exports.createTeam = [
     }
 ];
 
-exports.getTeam = (req, res, next) => {
+exports.getTeams = (req, res, next) => {
     Team.find().sort([
         ['name', 'ascending']
-    ]).exec((err, teams)=>{
+    ]).populate('users').exec((err, teams)=>{
         if (err) return next(err);
         res.json(teams);
     })
+}
+
+exports.getTeam = (req, res, next) => {
+    Team.findById(req.params.id).populate('users').exec((err, team)=>{
+        if (err) return next(err);
+        res.json(team);
+    })
+}
+
+
+
+exports.addUserTeam = function(req, res, next){  
+
+    Team.findByIdAndUpdate(req.body._id, {users: req.body.users}, {}, function(err){
+        if(err){
+            err.statusCode = 500;
+            return next(err);
+        }
+    });
+    
+};
+
+exports.removeUser = (req, res) => {
+
 }

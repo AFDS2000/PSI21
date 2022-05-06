@@ -1,0 +1,23 @@
+button {
+    float: right;
+}
+table {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.mat-header-cell {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }

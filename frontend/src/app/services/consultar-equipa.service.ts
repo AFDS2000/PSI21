@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { catchError, find, first, tap} from 'rxjs/operators';
+import { catchError, first} from 'rxjs/operators';
 
 import { ErrorHandlerService } from './error-handler.service';
 import { Team } from '../models/team';
@@ -14,7 +14,7 @@ import { Team } from '../models/team';
 })
 export class ConsultarEquipaService {
 
-  private url = 'http://localhost:3021/consultar/';
+  private url = 'http://localhost:3021/team';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -28,9 +28,14 @@ export class ConsultarEquipaService {
   
   
   getTeams(): Observable<Team[]> {
+    
     return this.http.get<Team[]>(this.url).pipe(
       first(), catchError(this.errorHandlerService.handleError<Team[]>('getTeams')));
   }
 
+  getTeam(id: String): Observable<Team>{
+    return this.http.get<Team>(`${this.url}/${id}`).pipe(first(), catchError(this.errorHandlerService.handleError<Team>('getTeam')));
+  }
 
 }
+
