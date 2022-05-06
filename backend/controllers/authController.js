@@ -5,12 +5,11 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-exports.getAllUsers = (req, res, next) => {
-    User.find()
+exports.getUsers = (req, res, next) => {
+    User.find({ "name": { "$regex": req.query.name, "$options": "i" } })
         .sort([['name', 'ascending']])
         .exec((err, users) => {
             if (err) return next(err);
-
             res.json(users)
         });
 }
@@ -41,9 +40,8 @@ exports.signup = [
 
             user.save((err) => {
                 if (err) {
-                    err.message = "Já existe um utilizador com este nome"
-                    err.statusCode = 500;
-                    throw err;
+                    res.status(500).json(err);
+                    return;
                 }
                 res.status(201).json({
                     message: "Utilizador registado!"

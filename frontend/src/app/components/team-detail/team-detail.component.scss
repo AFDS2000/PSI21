@@ -1,6 +1,7 @@
 button {
     float: right;
 }
+
 table {
     margin: 0 auto;
     width: 100%;
@@ -20,4 +21,55 @@ table {
 
 .mat-row:hover .mat-cell {
     border-color: currentColor;
-  }
+}
+
+mat-expansion-panel {
+    margin-top: 1em;
+}
+
+//Search bar
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    display: block;
+}
+
+input:focus {
+    outline: #336699 auto 1px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.search-result li {
+    border-bottom: 1px solid #336699;
+    border-left: 1px solid #336699;
+    border-right: 1px solid #336699;
+    width: 100%;
+    max-width: 600px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+}
+
+.search-result li:hover {
+    background-color: #336699;
+    color: white;
+}
+
+ul.search-result {
+    margin-top: 0;
+    padding-left: 0;
+}

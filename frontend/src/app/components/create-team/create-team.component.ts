@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { CreateTeamService } from 'src/app/services/create-team.service';
+import { TeamService } from 'src/app/services/team.service'
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,7 +14,7 @@ export class CreateTeamComponent implements OnInit {
   teamForm!: FormGroup;
   
 
-  constructor(private criarEquipaService: CreateTeamService) { }
+  constructor(private teamService: TeamService) { }
 
   ngOnInit(): void {
     this.teamForm = this.createFormGroup();
@@ -34,7 +34,7 @@ export class CreateTeamComponent implements OnInit {
   }
   
   criarEquipa() {
-    this.criarEquipaService.addTeam(this.teamForm.value).subscribe((msg) => {
+    this.teamService.addTeam(this.teamForm.value).subscribe((msg) => {
       if (msg) {
         Swal.fire({
             icon: 'success',

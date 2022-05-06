@@ -1,17 +1,36 @@
-const { body , validationResult  } = require('express-validator');
+const { body, validationResult } = require('express-validator');
+const team = require('../models/team');
 
 const Team = require('../models/team');
 
-//verificar que o utilizador que esta a fazer a criação da quipa é um administrador
+exports.getTeams = (req, res, next) => {
+    Team.find().
+        populate('users').
+        sort([['name', 'ascending']]).
+        exec((err, teams) => {
+            if (err) return next(err);
+            res.json(teams);
+        })
+}
+
+exports.getTeam = (req, res, next) => {
+    Team.findById(req.params.id).
+        populate('users').
+        exec((err, team) => {
+            if (err) return next(err);
+            res.json(team);
+        })
+}
+
 exports.createTeam = [
-    body('name').trim().isAlphanumeric().isLength({min:4}),
-    
+    body('name').trim().isAlphanumeric().isLength({ min: 4 }),
+
     (req, res, next) => {
 
         const errors = validationResult(req);
 
-        if(!errors.isEmpty()) {
-            res.json({err: errors});
+        if (!errors.isEmpty()) {
+            res.json({ err: errors });
             return;
         }
 
@@ -21,8 +40,8 @@ exports.createTeam = [
             }
         );
 
-        team.save( (err)  => {
-            if(err) { 
+        team.save((err) => {
+            if (err) {
                 err.statusCode = 500;
                 return next(err);
             }
@@ -33,35 +52,40 @@ exports.createTeam = [
     }
 ];
 
-exports.getTeams = (req, res, next) => {
-    Team.find().sort([
-        ['name', 'ascending']
-    ]).populate('users').exec((err, teams)=>{
-        if (err) return next(err);
-        res.json(teams);
-    })
-}
+exports.addUserTeam = async (req, res, next) => {
 
-exports.getTeam = (req, res, next) => {
-    Team.findById(req.params.id).populate('users').exec((err, team)=>{
-        if (err) return next(err);
-        res.json(team);
-    })
-}
+    var team = await Team.findOne({ 'name': { '$regex': req.body.team.name, '$options': 'i' } });
+    if(!team) {
+        const error = new Error("Equipa não encontrada");
+        error.statusCode = 401;
+        return next(error);
+    }
 
+    for (let user of team.users) {
+        if(user._id == req.body.user._id) {
+            const error = new Error("Utilizador já existe na equipa");
+            error.statusCode = 401;
+            return next(error);
+        }
+    }
 
-
-exports.addUserTeam = function(req, res, next){  
-
-    Team.findByIdAndUpdate(req.body._id, {users: req.body.users}, {}, function(err){
-        if(err){
+    team.users.push(req.body.user);
+    team.save((err) => {
+        if (err) {
             err.statusCode = 500;
             return next(err);
         }
+        res.status(201).json(team);
     });
     
 };
 
-exports.removeUser = (req, res) => {
-
+exports.deleteUser = (req, res) => {
+    Team.findByIdAndUpdate(req.body._id, { users: req.body.users }, {}, function (err) {
+        if (err) {
+            err.statusCode = 500;
+            return next(err);
+        }
+        res.status(200).json({ message: "Utilizador removido com sucesso!" });
+    });
 }

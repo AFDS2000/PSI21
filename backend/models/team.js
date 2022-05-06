@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var teamSchema = new Schema({
     name: {type: 'string', required: true, unique: true},
-    users: {type: [Schema.ObjectId], required: false}
+    users: {type: [Schema.ObjectId], ref: 'User',required: false}
     //
 });
 

@@ -3,13 +3,10 @@ var router = express.Router();
 const TeamController = require('../controllers/teamController');
 const auth = require('../middleware/auth');
 
-//Routers Team
-router.post('/criarEquipa', TeamController.createTeam);
-
 router.get('/', TeamController.getTeams);
-
-router.get('/:id', TeamController.getTeam);
-
 router.put('/',  TeamController.addUserTeam);
+router.put('/deleteUser', TeamController.deleteUser)
+router.get('/:id', TeamController.getTeam);
+router.post('/criarEquipa', TeamController.createTeam);
 
 module.exports = router;
