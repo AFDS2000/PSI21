@@ -1,0 +1,27 @@
+
+.form{
+    display:flex;
+    flex-direction: row;
+}
+
+.divCard{
+    margin-left: 2em;
+
+}
+
+.divCard > mat-card{
+    margin: 4em auto;
+    width: 40em;
+    height: 25em;
+}
+
+.divForm{
+    width: 20em;
+
+}
+
+.cardTarefas{
+   
+    width: 10em;
+    height: 20em;
+}

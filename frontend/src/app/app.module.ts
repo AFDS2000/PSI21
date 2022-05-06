@@ -28,6 +28,7 @@ import { TaskComponent } from './components/task/task.component';
 import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 
+import { ProjetosComponent } from './components/projetos/projetos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ListaProjetosComponent } from './components/lista-projetos/lista-projet
     CriarProjetoComponent,
     TaskComponent,
     ListaProjetosComponent,
+    ProjetosComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { ListaProjetosComponent } from './components/lista-projetos/lista-projet
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
-    MatCommonModule,
+    MatCommonModule
   ],
   providers: [
       {
