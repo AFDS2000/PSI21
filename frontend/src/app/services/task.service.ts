@@ -5,6 +5,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
 
 import { Task } from '../models/task';
 import { ErrorHandlerService } from './error-handler.service';
+import {User} from "../models/user";
 
 @Injectable({
     providedIn: 'root'
@@ -43,4 +44,14 @@ export class TaskService {
             catchError(this.errorHandlerService.handleError<Task>('deleteTask'))
         );
     }
+
+  editUsersTask(id: string, users: string[]): Observable<Task> {
+      const url_edit = `${this.url}/edit-users/${id}`;
+
+      return this.http.post<Task>(url_edit, users, this.httpOptions).pipe(
+        catchError(this.errorHandlerService.handleError<Task>('editUsersTask'))
+      );
+
+
+  }
 }
