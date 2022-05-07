@@ -26,11 +26,11 @@ export class CreateTeamService {
     ) { }
 
 
-    addTeam(criarEquipa: Team): Observable<{errors: string}> {
+    addTeam(criarEquipa: Team): Observable<{ errors: string }> {
         const url_criarEquipa = `${this.url}/criarEquipa`
         return this.http.post<any>(url_criarEquipa, criarEquipa, this.httpOptions).pipe(
             first(),
-            catchError(this.errorHandlerService.handleError<{errors: string}>('addTeam'))
+            catchError(this.errorHandlerService.handleError<{ errors: string }>('addTeam'))
         );
     }
 }

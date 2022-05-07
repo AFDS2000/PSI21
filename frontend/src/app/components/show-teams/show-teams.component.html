@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>
+        Consultar Equipas:
+    </mat-card-title>
+    <mat-card-content>
+        <table mat-table [dataSource]="teams">
+            
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
+
+                <td mat-cell *matCellDef="let element" routerLink="/consultar/equipaDetail/{{element._id}}">
+                    {{element.name}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

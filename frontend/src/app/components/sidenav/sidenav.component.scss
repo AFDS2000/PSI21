@@ -43,13 +43,15 @@ mat-panel-title:hover {
 }
 
 
-.mat-expansion-panel-header:hover {
+mat-expansion-panel-header:hover {
     ::ng-deep .mat-expansion-indicator:after {
         color: #66FCF1 !important;
     }
 }
 
 mat-expansion-panel-header {
+    padding-left: 1.3em;
+
     ::ng-deep .mat-expansion-indicator:after {
         color: white;
     }
@@ -60,6 +62,7 @@ mat-panel-title {
     width: 200%;
     display: flex;
     margin-top: 0.3em;
+    padding-bottom: 0.5em;
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
@@ -74,7 +77,6 @@ mat-panel-title {
     width: 100%;
     display: flex;
     margin-top: 0.3em;
-    padding-left: 1.5em;
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
@@ -116,8 +118,9 @@ mat-divider {
 
     color: #66FCF1;
 
-    .specific-class > mat-panel-title {
+    .specific-class>mat-panel-title {
         color: #66FCF1 !important;
+
         ::ng-deep .mat-expansion-indicator:after {
             color: #66FCF1 !important;
         }

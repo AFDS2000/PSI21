@@ -29,6 +29,14 @@ export class TaskService {
             );
     }
 
+    getTasksUser(id: string) {
+        const url_tasksUser = `${this.url}/${id}`
+        return this.http.get<Task[]>(url_tasksUser)
+            .pipe(
+                catchError(this.errorHandlerService.handleError<Task[]>('getTasks', []))
+            );
+    }
+
     addTask(task: Task): Observable<Task> {
         const url_add = `${this.url}/add`;
         return this.http.post<Task>(url_add, task, this.httpOptions).pipe(

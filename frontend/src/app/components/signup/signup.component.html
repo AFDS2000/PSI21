@@ -12,27 +12,35 @@
                 <mat-label>Palavra-passe</mat-label>
                 <input matInput type="password" formControlName="password">
             </mat-form-field>
-            <mat-label class="col" [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('minlength') ? 'red' : 'green'}">
+            <mat-label class="col"
+                [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('minlength') ? 'red' : 'green'}">
                 <mat-icon>
-                    {{ signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('minlength') ? 'cancel' : 'check_circle' }}
+                    {{ signupForm.controls['password'].hasError('required') ||
+                    signupForm.controls['password'].hasError('minlength') ? 'cancel' : 'check_circle' }}
                 </mat-icon>
                 Deve de conter pelo menos 8 caracteres
             </mat-label>
-            <mat-label class="col" [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasNumber') ? 'red' : 'green'}">
-                <mat-icon> 
-                    {{ signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasNumber') ? 'cancel' : 'check_circle' }}
+            <mat-label class="col"
+                [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasNumber') ? 'red' : 'green'}">
+                <mat-icon>
+                    {{ signupForm.controls['password'].hasError('required') ||
+                    signupForm.controls['password'].hasError('hasNumber') ? 'cancel' : 'check_circle' }}
                 </mat-icon>
                 Deve conter pelo menos um número
             </mat-label>
-            <mat-label class="col" [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasCapitalCase') ? 'red' : 'green'}">
+            <mat-label class="col"
+                [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasCapitalCase') ? 'red' : 'green'}">
                 <mat-icon>
-                    {{ signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasCapitalCase') ? 'cancel' : 'check_circle' }}
+                    {{ signupForm.controls['password'].hasError('required') ||
+                    signupForm.controls['password'].hasError('hasCapitalCase') ? 'cancel' : 'check_circle' }}
                 </mat-icon>
                 Deve de conter pelo uma letra maiúscula
             </mat-label>
-            <mat-label class="col" [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasSmallCase') ? 'red' : 'green'}">
-                <mat-icon> 
-                    {{ signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasSmallCase') ? 'cancel' : 'check_circle' }}
+            <mat-label class="col"
+                [ngStyle]="{'color': signupForm.controls['password'].hasError('required') || signupForm.controls['password'].hasError('hasSmallCase') ? 'red' : 'green'}">
+                <mat-icon>
+                    {{ signupForm.controls['password'].hasError('required') ||
+                    signupForm.controls['password'].hasError('hasSmallCase') ? 'cancel' : 'check_circle' }}
                 </mat-icon>
                 Deve de conter pelo menos uma letra minúscula
             </mat-label>

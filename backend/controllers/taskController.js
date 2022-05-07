@@ -1,7 +1,6 @@
 const { body, validationResult } = require('express-validator');
 
 const Task = require('../models/task');
-const User = require("../models/user");
 
 exports.all = (req, res, next) => {
     Task.find().populate('users')
@@ -42,7 +41,7 @@ exports.add = [
     }
 ];
 
-exports.delete = function (req, res, next) {
+exports.delete = (req, res, next) => {
     Task.findByIdAndDelete(req.params.id, {}, function (error, thehero) {
         if (error) return next(error);
     });
@@ -51,19 +50,21 @@ exports.delete = function (req, res, next) {
 };
 
 exports.editUsers = async function (req, res, next) {
-    console.log(req.params.id)
-    console.log(req.body)
-
-    const task = await Task.findOne({ '_id': req.params.id});
-    console.log(task)
+    const task = await Task.findOne({ '_id': req.params.id });
 
     task.users = req.body;
-
-
+    
     task.save((error, task) => {
         if (error) return next(error);
         res.status(200).json(task);
     });
-
 };
 
+exports.getTaskUser = (req, res, next) => {
+    Task.find({ users: req.params.id })
+        .sort([['name', 'ascending']])
+        .exec((error, tasks) => {
+            if (error) return next(error);
+            res.status(200).json(tasks);
+        });
+} 
