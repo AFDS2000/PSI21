@@ -27,16 +27,16 @@ export class AuthService {
         private errorHandlerService: ErrorHandlerService,
         private router: Router
     ) {
-        if (localStorage.getItem("token")) {
+        if (sessionStorage.getItem("token")) {
             this.isUserLoogedIn$.next(true);
         }
 
-        if (localStorage.getItem("userType")) {
-            this.userType = localStorage.getItem("userType");
+        if (sessionStorage.getItem("userType")) {
+            this.userType = sessionStorage.getItem("userType");
         }
 
-        if (localStorage.getItem("userId")) {
-            this.userId = localStorage.getItem("userId");
+        if (sessionStorage.getItem("userId")) {
+            this.userId = sessionStorage.getItem("userId");
         }
 
     }
@@ -59,9 +59,9 @@ export class AuthService {
                 this.userId = tokenObject.id;
                 this.userType = tokenObject.type;
 
-                localStorage.setItem("token", tokenObject.token);
-                localStorage.setItem("userId", this.userId);
-                localStorage.setItem("userType", this.userType);
+                sessionStorage.setItem("token", tokenObject.token);
+                sessionStorage.setItem("userId", this.userId);
+                sessionStorage.setItem("userType", this.userType);
 
                 this.isUserLoogedIn$.next(true);
                 this.router.navigate(["home/myTasks"])
