@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
@@ -9,6 +8,7 @@ import { Team } from 'src/app/models/team';
 import { User } from 'src/app/models/user';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
+
 import Swal from 'sweetalert2';
 
 @Component({

@@ -7,8 +7,6 @@ import { TaskService } from 'src/app/services/task.service';
 
 import { Project } from '../../models/project';
 
-
-
 @Component({
     selector: 'app-lista-projetos',
     templateUrl: './lista-projetos.component.html',
@@ -33,7 +31,6 @@ export class ListaProjetosComponent implements OnInit {
         this.getProjects();
         this.getTasks();
     }
-
 
     createFormGroup(): FormGroup {
         return new FormGroup({

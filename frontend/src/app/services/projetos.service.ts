@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { catchError, Observable } from 'rxjs';
+
 import { Project } from '../models/project';
-import { Task } from '../models/task';
 import { Team } from '../models/team';
 import { ErrorHandlerService } from './error-handler.service';
 

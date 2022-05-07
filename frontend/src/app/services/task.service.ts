@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 
 import { Task } from '../models/task';
 import { ErrorHandlerService } from './error-handler.service';
