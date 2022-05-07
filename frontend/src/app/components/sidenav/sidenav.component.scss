@@ -32,6 +32,12 @@ mat-expansion-panel {
     background: #0f172a;
     box-shadow: none !important;
 }
+.grande.mat-expansion-panel-body  {
+    padding-left: 4px;
+}
+mat-expansion-panel:hover {
+    background-color: #172649;
+}
 
 mat-panel-title:hover {
     color: #66FCF1;
@@ -82,6 +88,7 @@ mat-panel-title {
 
 .menu-button:hover {
     color: #66FCF1;
+    background-color: #172649;
 }
 
 .name {

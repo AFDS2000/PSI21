@@ -1,0 +1,86 @@
+
+.form{
+    display:flex;
+    flex-direction: row;
+}
+mat-card {
+    margin: 1em auto;
+    width: 40em;
+    height: 15em;
+}
+mat-form-field,
+mat-checkbox {
+    width: 100%;
+    margin-top: 1em;
+}
+.divCard{
+    margin-left: 2em;
+
+}
+
+.divCard > mat-card{
+    margin: 4em auto;
+    width: 40em;
+    height: 25em;
+}
+
+
+.divForm{
+    width: 20em;
+
+}
+.projeto{
+    height: min-content;
+}
+.cardTarefas{
+   
+    width: 10em;
+    height: 20em;
+}
+button {
+    width: 10em;
+    margin-left: 2em;
+    float: right;
+
+}
+
+@media screen and (max-width: 1000px) {
+    .main {
+        display:flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: calc(100% - 80px);
+    }
+    .divForm{
+        width: calc(100% - 80px);
+    
+    }
+    
+    .form{
+    display:flex;
+    flex-direction: column;
+    }
+    mat-card{
+        width: calc(100% - 80px);
+        margin: 4em auto;
+    }
+    .divCard{
+        margin-left: 0px;
+    
+    }
+    .cardTarefas{
+   
+        width: calc(100% - 80px);
+        height: 20em;
+    }
+    .divCard > mat-card{
+        margin: 4em auto;
+        width:calc(100% - 80px);
+        height: 25em;
+    }
+    .cardTarefas{
+   
+        width: calc(100% - 80px);
+        height: 20em;
+    }
+}

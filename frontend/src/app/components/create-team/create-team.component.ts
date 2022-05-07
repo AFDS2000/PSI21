@@ -5,13 +5,12 @@ import { TeamService } from 'src/app/services/team.service'
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-create-team',
-  templateUrl: './create-team.component.html',
-  styleUrls: ['./create-team.component.scss']
+    selector: 'app-create-team',
+    templateUrl: './create-team.component.html',
+    styleUrls: ['./create-team.component.scss']
 })
 export class CreateTeamComponent implements OnInit {
-
-  teamForm!: FormGroup;
+    teamForm!: FormGroup;
   
 
   constructor(private teamService: TeamService) { }

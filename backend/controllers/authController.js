@@ -5,25 +5,16 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-exports.getUsers = (req, res, next) => {
-    User.find({ "name": { "$regex": req.query.name, "$options": "i" } })
-        .sort([['name', 'ascending']])
-        .exec((err, users) => {
-            if (err) return next(err);
-            res.json(users)
-        });
-}
-
 exports.signup = [
     body('name').trim().isLength({ min: 3 }).withMessage('Introduza um nome válido'),
     body('password').trim().isLength({ min: 8 }).matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]/)
         .withMessage('A senha deve ter oito ou mais caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula e um algarismo'),
     body('type').trim().not().isEmpty(),
     async (req, res, next) => {
-        const errors = validationResult(req);
+        const error = validationResult(req);
 
-        if (!errors.isEmpty()) {
-            res.json(errors);
+        if (!error.isEmpty()) {
+            res.json(error);
             return;
         }
 
@@ -38,15 +29,13 @@ exports.signup = [
                 }
             );
 
-            user.save((err) => {
-                if (err) {
-                    res.status(500).json(err);
-                    return;
-                }
+            user.save((error) => {
+                if (error) return next(error);
                 res.status(201).json({
                     message: "Utilizador registado!"
                 });
-            })
+            });
+            
         } catch (error) {
             if (!error.statusCode)
                 error.statusCode = 500;
@@ -57,17 +46,9 @@ exports.signup = [
 
 exports.login = async (req, res, next) => {
     const password = req.body.password;
-    var user = new User(
-        {
-            name: req.body.name,
-            password: null,
-            type: null
-        }
-    );
 
     try {
-
-        var user = await User.findOne({ 'name': { '$regex': req.body.name, '$options': 'i' } });
+        const user = await User.findOne({ 'name': { '$regex': req.body.name, '$options': 'i' } });
 
         if (!user) {
             const error = new Error("Nome ou senha incorretos");

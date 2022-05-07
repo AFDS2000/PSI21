@@ -26,7 +26,6 @@ exports.createTeam = [
     body('name').trim().isAlphanumeric().isLength({ min: 4 }),
 
     (req, res, next) => {
-
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
@@ -36,17 +35,21 @@ exports.createTeam = [
 
         const team = new Team(
             {
-                name: req.body.name
+                name: req.body.name,
+                users:[]
+                
             }
         );
+            
 
         team.save((err) => {
+            
             if (err) {
                 err.statusCode = 500;
                 return next(err);
             }
             res.status(201).json({
-                message: "Grupo criado com sucesso!"
+                message: "Equipa criada com sucesso!"
             });
         });
     }
@@ -89,3 +92,11 @@ exports.deleteUser = (req, res) => {
         res.status(200).json({ message: "Utilizador removido com sucesso!" });
     });
 }
+exports.getTeams = (req, res, next) => {
+    Team.find().populate('users')
+        .sort([['name', 'ascending']])
+        .exec((error, teams) => {
+            if (error) return next(error);
+            res.status(200).json(teams);
+        });
+};

@@ -4,10 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const usersRouter = require('./routes/auth');
 const tasksRouter = require('./routes/tasks');
 const teamRouter = require('./routes/team');
-const authRouter = require('./routes/auth');
+var projectsRouter = require('./routes/projects');
 const userRouter = require('./routes/user');
+
 
 const app = express();
 app.use(cors({
@@ -34,10 +36,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/user', userRouter);
+app.use('/auth', usersRouter);
 app.use('/task', tasksRouter);
 app.use('/team', teamRouter);
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/projects', projectsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,7 +53,6 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
     res.status(err.statusCode || 500);
-    console.log(err.message)
     res.json(err.message)
 });
 

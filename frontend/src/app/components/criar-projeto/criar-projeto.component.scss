@@ -1,14 +1,7 @@
-
-button {
-    width: 10em;
-    margin-left: 2em;
-    float: right;
-
-}
 mat-card {
-    margin: 1em auto;
+    margin: 4em auto;
     width: 40em;
-    height: 20em;
+    height: 25em;
 }
 
 @media screen and (max-width: 1000px) {
@@ -18,8 +11,13 @@ mat-card {
     }
 }
 
-mat-form-field,
-mat-checkbox {
+mat-form-field {
     width: 100%;
     margin-top: 1em;
+}
+
+button {
+    float: right;
+    width: 10em;
+    margin-top: 2em;
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
@@ -15,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCommonModule } from '@angular/material/core';
+import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -31,6 +30,10 @@ import { MatTableModule } from '@angular/material/table';
 import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { ShowTeamsComponent } from './components/show-teams/show-teams.component';
 
+import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
+import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
+
+import { ProjetosComponent } from './components/projetos/projetos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,9 +43,12 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
     LoginComponent,
     CreateTeamComponent,
     ConsultarEquipasComponent,
-    TaskComponent,
     TeamDetailComponent,
-    ShowTeamsComponent
+    ShowTeamsComponent,
+    CriarProjetoComponent,
+    TaskComponent,
+    ListaProjetosComponent,
+    ProjetosComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,11 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptorService,
           multi: true
-      }
+      },
+      {
+        provide: MAT_DATE_LOCALE, 
+        useValue: 'en-GB'
+    }
     ],
   bootstrap: [AppComponent],
 })
