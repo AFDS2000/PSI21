@@ -18,14 +18,33 @@
             <span>Home</span>
         </button>
 
-        <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/tasks">
-            <mat-icon>library_books</mat-icon>
-            <span>Tarefas</span>
+        <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/listaProjeto">
+            <mat-icon>code</mat-icon>
+            <span>Associar Tarefas</span>
         </button>
+
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>library_books</mat-icon>
+                        <span>Tarefas</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/tasks">
+                    <mat-icon>library_books</mat-icon>
+                    <span>Criar/<br>Eliminar</span>
+                </mat-panel-title>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/tasks-manager">
+                    <mat-icon>edit</mat-icon>
+                    <span>Gerir Tarefas</span>
+                </mat-panel-title>
+            </mat-expansion-panel>
+        </mat-accordion>
 
         <mat-divider></mat-divider>
 
-        <mat-accordion>
+        <mat-accordion *ngIf="isAdmin">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -33,12 +52,11 @@
                         <span>Equipas</span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarEquipa">
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/criarEquipa">
                     <mat-icon>group_add</mat-icon>
                     <span>Criar Equipa</span>
                 </mat-panel-title>
-                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active"
-                    routerLink="/consultar/equipaDetail">
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/consultar/equipaDetail">
                     <mat-icon>search</mat-icon>
                     <span>Consultar</span>
                 </mat-panel-title>
@@ -54,10 +72,6 @@
                 <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/projetos">
                     <mat-icon>code</mat-icon>
                     <span>Associar<br>Equipas</span>
-                </mat-panel-title>
-                <mat-panel-title routerLinkActive="list-item-active" routerLink="/listaProjeto">
-                    <mat-icon>code</mat-icon>
-                    <span>Associar<br>Tarefas</span>
                 </mat-panel-title>
 
                 <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarProjeto">

@@ -21,9 +21,9 @@ export class SidenavComponent implements OnInit {
     sidenav!: MatSidenav;
     isAdmin!: boolean;
     user!: User;
-    
+
     constructor(
-        private observer: BreakpointObserver, 
+        private observer: BreakpointObserver,
         private router: Router,
         private authService: AuthService,
         private userService: UserService

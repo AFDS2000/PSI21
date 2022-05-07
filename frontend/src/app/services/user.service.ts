@@ -5,10 +5,10 @@ import { User } from '../models/user';
 import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
-    
+
     private url = 'http://localhost:3021/user';
 
     httpOptions = {
@@ -24,7 +24,14 @@ export class UserService {
         const url_user = `${this.url}/${id}`;
         return this.http.get<User>(url_user).pipe(
             catchError(this.errorHandlerService.handleError<User>('getUser'))
-        );  
+        );
+    }
+
+    getUsers() {
+        return this.http.get<User[]>(this.url)
+            .pipe(
+                catchError(this.errorHandlerService.handleError<User[]>('getUsers', []))
+            );
     }
 
     searchUsers(term: string): Observable<User[]> {

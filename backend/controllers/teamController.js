@@ -36,14 +36,14 @@ exports.createTeam = [
         const team = new Team(
             {
                 name: req.body.name,
-                users:[]
-                
+                users: []
+
             }
         );
-            
+
 
         team.save((err) => {
-            
+
             if (err) {
                 err.statusCode = 500;
                 return next(err);
@@ -58,14 +58,14 @@ exports.createTeam = [
 exports.addUserTeam = async (req, res, next) => {
 
     var team = await Team.findOne({ 'name': { '$regex': req.body.team.name, '$options': 'i' } });
-    if(!team) {
+    if (!team) {
         const error = new Error("Equipa não encontrada");
         error.statusCode = 401;
         return next(error);
     }
 
     for (let user of team.users) {
-        if(user._id == req.body.user._id) {
+        if (user._id == req.body.user._id) {
             const error = new Error("Utilizador já existe na equipa");
             error.statusCode = 401;
             return next(error);
@@ -80,7 +80,7 @@ exports.addUserTeam = async (req, res, next) => {
         }
         res.status(201).json(team);
     });
-    
+
 };
 
 exports.deleteUser = (req, res) => {

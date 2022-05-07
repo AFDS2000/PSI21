@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 
 import { Task } from '../models/task';
 import { ErrorHandlerService } from './error-handler.service';
+import { User } from "../models/user";
 
 @Injectable({
     providedIn: 'root'
@@ -49,6 +50,14 @@ export class TaskService {
 
         return this.http.delete<Task>(url_delete, this.httpOptions).pipe(
             catchError(this.errorHandlerService.handleError<Task>('deleteTask'))
+        );
+    }
+
+    editUsersTask(id: string, users: string[]): Observable<Task> {
+        const url_edit = `${this.url}/edit-users/${id}`;
+
+        return this.http.post<Task>(url_edit, users, this.httpOptions).pipe(
+            catchError(this.errorHandlerService.handleError<Task>('editUsersTask'))
         );
     }
 }

@@ -25,6 +25,6 @@ module.exports = (req, res, next) => {
 
     req.isLoggedIn = true;
     req.userId = decodedToken.userId,
-    req.userType = decodedToken.userType
+        req.userType = decodedToken.userType
     next();
 }

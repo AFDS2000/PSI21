@@ -44,14 +44,14 @@ app.use('/projects', projectsRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     const error = new Error('Not Found');
     error.statusCode = 404;
     next(error);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.statusCode || 500);
     res.json(err.message)
 });

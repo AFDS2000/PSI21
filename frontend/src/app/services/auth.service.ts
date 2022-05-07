@@ -23,10 +23,10 @@ export class AuthService {
     };
 
     constructor(
-        private http: HttpClient, 
+        private http: HttpClient,
         private errorHandlerService: ErrorHandlerService,
-        private router: Router  
-    ) { 
+        private router: Router
+    ) {
         if (localStorage.getItem("token")) {
             this.isUserLoogedIn$.next(true);
         }
@@ -58,17 +58,17 @@ export class AuthService {
             tap((tokenObject: { token: string; id: string; type: string }) => {
                 this.userId = tokenObject.id;
                 this.userType = tokenObject.type;
-                
+
                 localStorage.setItem("token", tokenObject.token);
                 localStorage.setItem("userId", this.userId);
                 localStorage.setItem("userType", this.userType);
-                
+
                 this.isUserLoogedIn$.next(true);
                 this.router.navigate(["home/myTasks"])
             }),
             catchError(this.errorHandlerService.handleError<{
                 token: string; type: string
-            }> ("login"))
+            }>("login"))
         )
 
     }

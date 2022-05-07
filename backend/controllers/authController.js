@@ -35,7 +35,7 @@ exports.signup = [
                     message: "Utilizador registado!"
                 });
             });
-            
+
         } catch (error) {
             if (!error.statusCode)
                 error.statusCode = 500;

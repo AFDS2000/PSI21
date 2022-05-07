@@ -3,13 +3,13 @@
         Projetos
     </mat-card-title>
     <mat-card-content>
-        <form [formGroup]="projectForm" (ngSubmit)="associar()" >
+        <form [formGroup]="projectForm" (ngSubmit)="associar()">
 
             <mat-form-field class="drop-downs" appearance="fill">
                 <mat-label>Projeto</mat-label>
-                <mat-select formControlName="projects"  (selectionChange)="updateTeams()" >
+                <mat-select formControlName="projects" (selectionChange)="updateTeams()">
                     <mat-option *ngFor="let project of projects" [value]="project">
-                    Nome: {{project.name}}
+                        Nome: {{project.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -19,7 +19,7 @@
                 <mat-select formControlName="teams">
                     <mat-option></mat-option>
                     <mat-option *ngFor="let team of teams" [value]="team">
-                    Nome: {{team.name}}
+                        Nome: {{team.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

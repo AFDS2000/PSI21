@@ -49,6 +49,17 @@ exports.delete = (req, res, next) => {
     res.status(200).json();
 };
 
+exports.editUsers = async function (req, res, next) {
+    const task = await Task.findOne({ '_id': req.params.id });
+
+    task.users = req.body;
+    
+    task.save((error, task) => {
+        if (error) return next(error);
+        res.status(200).json(task);
+    });
+};
+
 exports.getTaskUser = (req, res, next) => {
     Task.find({ users: req.params.id })
         .sort([['name', 'ascending']])

@@ -47,7 +47,7 @@ export class TeamService {
     }
 
     addUser(team: Team, user: User): Observable<Team> {
-        return this.http.put<Team>(this.url, {team, user}, this.httpOptions).pipe(
+        return this.http.put<Team>(this.url, { team, user }, this.httpOptions).pipe(
             first(),
             catchError(this.errorHandlerService.handleError<Team>('addUser'))
         );
