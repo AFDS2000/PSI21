@@ -72,11 +72,4 @@ export class AuthService {
         )
 
     }
-
-    getUser(id: string): Observable<User> {
-        const url_user = `${this.url}/${id}`;
-        return this.http.get<User>(url_user).pipe(
-            catchError(this.errorHandlerService.handleError<User>('getUser'))
-        );  
-    }
 }

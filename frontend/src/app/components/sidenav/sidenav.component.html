@@ -8,8 +8,8 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-        <h4 class="name">{{user.name}}</h4>
-        <p class="designation">{{user.type}}</p>
+        <h4 class="name">John Smith</h4>
+        <p class="designation">Software Engineer</p>
 
         <mat-divider></mat-divider>
 
@@ -37,17 +37,41 @@
                     <mat-icon>group_add</mat-icon>
                     <span>Criar Equipa</span>
                 </mat-panel-title>
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active"
+                    routerLink="/consultar/equipaDetail">
+                    <mat-icon>search</mat-icon>
+                    <span>Consultar</span>
+                </mat-panel-title>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>dashboard</mat-icon>
+                        <span>Projetos</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/projetos">
+                    <mat-icon>code</mat-icon>
+                    <span>Associar<br>Equipas</span>
+                </mat-panel-title>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/listaProjeto">
+                    <mat-icon>code</mat-icon>
+                    <span>Associar<br>Tarefas</span>
+                </mat-panel-title>
+
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarProjeto">
+                    <mat-icon>create_new_folder</mat-icon>
+                    <span>Criar Projeto</span>
+                </mat-panel-title>
+
             </mat-expansion-panel>
         </mat-accordion>
 
-        <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active" routerLink="/criarUtilizador">
+        <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
+            routerLink="/criarUtilizador">
             <mat-icon>person</mat-icon>
             <span>Criar Utilizador</span>
-        </button>
-
-        <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active" routerLink="/criarProjeto">
-          <mat-icon>create_new_folder</mat-icon>
-          <span>Criar Projeto</span>
         </button>
 
         <button mat-button (click)="logout()" class="menu-button logout">

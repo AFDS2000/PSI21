@@ -8,6 +8,7 @@ import { delay, filter } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @UntilDestroy()
 @Component({
@@ -24,7 +25,8 @@ export class SidenavComponent implements OnInit {
     constructor(
         private observer: BreakpointObserver, 
         private router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private userService: UserService
     ) { }
 
     ngOnInit(): void {
@@ -34,7 +36,7 @@ export class SidenavComponent implements OnInit {
 
     getUser() {
         if (this.authService.userId != null)
-            this.authService.getUser(this.authService.userId).subscribe(
+            this.userService.getUser(this.authService.userId).subscribe(
                 (user) => (this.user = user)
             );
     }

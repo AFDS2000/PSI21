@@ -28,10 +28,7 @@ exports.criarProjeto = [
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            res.json({
-                err: errors
-            });
-            return;
+            return next(errors);
         }
 
        
@@ -54,3 +51,55 @@ exports.criarProjeto = [
     }
 
 ];
+
+exports.updateTeam = function(req,res,next){
+        console.log(req.body.teams==null)
+        if(req.body.teams==null){
+            Project.findByIdAndUpdate(req.body._id, {teams: null}, {}, function (err) {
+                if (err) {
+                    err.statusCode = 500;
+                    return next(err);
+                }
+                });
+                res.status(201).json({
+                    message: "Projeto criado com sucesso!"
+                });
+            
+        }else{
+       Project.findByIdAndUpdate(req.body._id, {teams: req.body.teams}, {}, function (err) {
+        if (err) {
+            err.statusCode = 500;
+            return next(err);
+        }
+        });
+        res.status(201).json({
+            message: "Projeto criado com sucesso!"
+        });
+    }
+  };
+
+  exports.updateTasks = function(req,res,next){
+    console.log(req.body.tasks==null)
+    if(req.body.tasks==null){
+        Project.findByIdAndUpdate(req.body._id, {tasks: null}, {}, function (err) {
+            if (err) {
+                err.statusCode = 500;
+                return next(err);
+            }
+            });
+            res.status(201).json({
+                message: "Projeto criado com sucesso!"
+            });
+        
+    }else{
+   Project.findByIdAndUpdate(req.body._id, {tasks: req.body.tasks}, {}, function (err) {
+    if (err) {
+        err.statusCode = 500;
+        return next(err);
+    }
+    });
+    res.status(201).json({
+        message: "Projeto criado com sucesso!"
+    });
+}
+};

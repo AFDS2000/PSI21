@@ -13,6 +13,14 @@ import { CreateTeamComponent } from './components/create-team/create-team.compon
 import { TaskComponent } from './components/task/task.component';
 import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
 import { HomeComponent } from './components/home/home.component';
+import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
+import { ConsultarEquipasComponent } from './components/consultar-equipas/consultar-equipas.component';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
+import { ShowTeamsComponent } from './components/show-teams/show-teams.component';
+import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
+import { ProjetosComponent } from './components/projetos/projetos.component';
+
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -24,13 +32,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCommonModule } from '@angular/material/core';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
-import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +49,12 @@ import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
         CriarProjetoComponent,
         TaskComponent,
         HomeComponent,
-        MyTasksComponent
+        MyTasksComponent,
+        ConsultarEquipasComponent,
+        TeamDetailComponent,
+        ShowTeamsComponent,
+        ListaProjetosComponent,
+        ProjetosComponent
     ],
     imports: [
         BrowserModule,
@@ -73,6 +84,10 @@ import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
             useClass: AuthInterceptorService, 
             multi: true,
             
+        },
+        {
+            provide: MAT_DATE_LOCALE, 
+            useValue: 'en-GB'
         }
     ],
     bootstrap: [AppComponent],

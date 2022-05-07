@@ -1,0 +1,57 @@
+<div class = "main">
+        <form [formGroup]="viewForm" #formDirective="ngForm" class="form" >
+            <div class="divForm">
+            <mat-form-field class="projeto" appearance="fill">
+                <mat-label>Lista de Projetos</mat-label>
+                <mat-select formControlName="projeto" (selectionChange)="updateTasks()">
+                    <mat-option *ngFor="let project of projects" [value]="project">
+                    Project: {{project.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+            <div class="divCard">
+            <mat-card>
+                <mat-card-title>
+                    Associar Tarefas
+                </mat-card-title>
+                <mat-card-content>
+                    <form [formGroup] = "associarTask" (ngSubmit)="associar()">
+                    <mat-form-field class="task-add" appearance="fill">
+                        <mat-label>Lista de Tarefas</mat-label>
+                        <mat-select formControlName="task">
+                            <mat-option *ngFor="let task of tasksAdd" [value]="task">
+                            Nome: {{task.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                    <button color="primary" [disabled]="!associarTask.valid" mat-raised-button type="submit">
+                        <span>Associar</span>
+                    </button> 
+                </form>  
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>
+                    Desassociar Tarefas
+                </mat-card-title>
+                <mat-card-content>
+                    <form [formGroup] = "desassociarTask" (ngSubmit)="desassociar()">
+                    <mat-form-field class="task-remove" appearance="fill">
+                        <mat-label>Lista de Tarefas</mat-label>
+                        <mat-select formControlName="task">
+                            <mat-option *ngFor="let task of tasksRemove" [value]="task">
+                            Nome: {{task.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>  
+                    <button color="primary" [disabled]="!desassociarTask.valid" mat-raised-button type="submit">
+                        <span>Desassociar</span>
+                    </button>
+                </form>  
+                </mat-card-content>
+            </mat-card>
+        </div>
+        </form>
+  
+    </div>
