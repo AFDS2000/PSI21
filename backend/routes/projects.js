@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const auth = require('../middleware/auth');
 const projectController = require('../controllers/projectController')
 
-router.get('', projectController.getProject);
-router.put('', projectController.updateTeam);
-router.get('/listaProjetos', projectController.getProject);
-router.put('/tasks', projectController.updateTasks);
-router.post('/criarProjeto', projectController.criarProjeto);
+router.get('', auth, projectController.getProject);
+router.put('', auth, projectController.updateTeam);
+router.get('/listaProjetos', auth, projectController.getProject);
+router.put('/tasks', auth, projectController.updateTasks);
+router.post('/criarProjeto', auth, projectController.criarProjeto);
 
 module.exports = router;

@@ -12,7 +12,7 @@ export class AdminGuardService implements CanActivate {
 
     canActivate(): boolean {
         if (this.authService.userType != 'Administrador') {
-            this.router.navigate(["about"]);
+            this.router.navigate(["home/myTasks"]);
         }
 
         return this.authService.userType == 'Administrador';

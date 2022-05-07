@@ -5,7 +5,7 @@ import { catchError, Observable } from 'rxjs';
 
 import { Task } from '../models/task';
 import { ErrorHandlerService } from './error-handler.service';
-import {User} from "../models/user";
+import { User } from "../models/user";
 
 @Injectable({
     providedIn: 'root'
@@ -53,13 +53,11 @@ export class TaskService {
         );
     }
 
-  editUsersTask(id: string, users: string[]): Observable<Task> {
-      const url_edit = `${this.url}/edit-users/${id}`;
+    editUsersTask(id: string, users: string[]): Observable<Task> {
+        const url_edit = `${this.url}/edit-users/${id}`;
 
-      return this.http.post<Task>(url_edit, users, this.httpOptions).pipe(
-        catchError(this.errorHandlerService.handleError<Task>('editUsersTask'))
-      );
-
-
-  }
+        return this.http.post<Task>(url_edit, users, this.httpOptions).pipe(
+            catchError(this.errorHandlerService.handleError<Task>('editUsersTask'))
+        );
+    }
 }

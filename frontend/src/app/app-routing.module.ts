@@ -24,6 +24,9 @@ import { TaskManagerComponent } from "./components/task-manager/task-manager.com
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home/myTasks' },
     { path: 'login', component: LoginComponent, canActivate: [LoginGuardService] },
+    { path: 'tasks', component: TaskComponent, canActivate: [AuthGuardService] },
+    { path: 'tasks-manager', component: TaskManagerComponent, canActivate: [AuthGuardService] },
+
     {
         path: 'home', component: HomeComponent, canActivate: [AuthGuardService], children: [
             { path: 'myTasks', component: MyTasksComponent, canActivate: [AuthGuardService] },
@@ -32,18 +35,16 @@ const routes: Routes = [
     },
     { path: 'criarEquipa', component: CreateTeamComponent, canActivate: [AuthGuardService, AdminGuardService] },
     {
-        path: 'consultar', component: ConsultarEquipasComponent,
+        path: 'consultar', component: ConsultarEquipasComponent, canActivate: [AuthGuardService, AdminGuardService],
         children: [
-            { path: 'equipaDetail/:id', component: TeamDetailComponent },
-            { path: 'equipaDetail', component: ShowTeamsComponent }
+            { path: 'equipaDetail/:id', component: TeamDetailComponent, canActivate: [AuthGuardService, AdminGuardService] },
+            { path: 'equipaDetail', component: ShowTeamsComponent, canActivate: [AuthGuardService, AdminGuardService] }
         ]
     },
-    { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
-    { path: 'tasks-manager', component: TaskManagerComponent, canActivate: [AuthGuardService] },
-    { path: 'tasks', component: TaskComponent, canActivate: [AuthGuardService] },
+    { path: 'projetos', component: ProjetosComponent, canActivate: [AuthGuardService, AdminGuardService] },
+    { path: 'listaProjeto', component: ListaProjetosComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent, canActivate: [AuthGuardService, AdminGuardService] },
-    { path: 'listaProjeto', component: ListaProjetosComponent },
-    { path: 'projetos', component: ProjetosComponent, canActivate: [AdminGuardService] },
+    { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: '**', component: NotFoundComponent, canActivate: [AuthGuardService] },
 ];
 
