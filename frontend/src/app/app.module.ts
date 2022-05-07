@@ -20,11 +20,16 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
+import { ConsultarEquipasComponent } from './components/consultar-equipas/consultar-equipas.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { TaskComponent } from './components/task/task.component';
+import { MatTableModule } from '@angular/material/table';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
+import { ShowTeamsComponent } from './components/show-teams/show-teams.component';
+
 import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.component';
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 
@@ -37,6 +42,9 @@ import { ProjetosComponent } from './components/projetos/projetos.component';
     SignupComponent,
     LoginComponent,
     CreateTeamComponent,
+    ConsultarEquipasComponent,
+    TeamDetailComponent,
+    ShowTeamsComponent,
     CriarProjetoComponent,
     TaskComponent,
     ListaProjetosComponent,
@@ -61,7 +69,8 @@ import { ProjetosComponent } from './components/projetos/projetos.component';
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
-    MatCommonModule
+    MatCommonModule,
+    MatTableModule,
   ],
   providers: [
       {

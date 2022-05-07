@@ -63,7 +63,10 @@
 
             </mat-expansion-panel>
         </mat-accordion>
-
+        <mat-panel-title routerLinkActive = "list-item-active" routerLink = "/consultar/equipaDetail">
+          <mat-icon>search</mat-icon>
+          <span>Consultar</span>
+        </mat-panel-title>
         <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
             routerLink="/criarUtilizador">
             <mat-icon>person</mat-icon>

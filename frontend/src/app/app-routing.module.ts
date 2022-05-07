@@ -7,9 +7,12 @@ import { CriarProjetoComponent } from './components/criar-projeto/criar-projeto.
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
+import { ConsultarEquipasComponent } from './components/consultar-equipas/consultar-equipas.component';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { TaskComponent } from './components/task/task.component';
+import { ShowTeamsComponent } from './components/show-teams/show-teams.component';
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
 
@@ -17,6 +20,11 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: 'login', component: LoginComponent },
     { path: 'criarEquipa', component: CreateTeamComponent},
+    { path: 'consultar', component: ConsultarEquipasComponent, 
+    children: [{path: 'equipaDetail/:id', component: TeamDetailComponent}, {path: 'equipaDetail', component: ShowTeamsComponent}]
+    
+    },
+
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent },

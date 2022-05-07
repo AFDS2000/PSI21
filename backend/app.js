@@ -8,6 +8,7 @@ const usersRouter = require('./routes/auth');
 const tasksRouter = require('./routes/tasks');
 const teamRouter = require('./routes/team');
 var projectsRouter = require('./routes/projects');
+const userRouter = require('./routes/user');
 
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/user', userRouter);
 app.use('/auth', usersRouter);
 app.use('/task', tasksRouter);
 app.use('/team', teamRouter);
