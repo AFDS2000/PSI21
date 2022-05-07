@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 
 const Task = require('../models/task');
+const User = require("../models/user");
 
 exports.all = (req, res, next) => {
     Task.find().populate('users')
@@ -48,3 +49,21 @@ exports.delete = function (req, res, next) {
 
     res.status(200).json();
 };
+
+exports.editUsers = async function (req, res, next) {
+    console.log(req.params.id)
+    console.log(req.body)
+
+    const task = await Task.findOne({ '_id': req.params.id});
+    console.log(task)
+
+    task.users = req.body;
+
+
+    task.save((error, task) => {
+        if (error) return next(error);
+        res.status(200).json(task);
+    });
+
+};
+
