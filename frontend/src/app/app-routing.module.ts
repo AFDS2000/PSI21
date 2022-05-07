@@ -11,13 +11,15 @@ import { CreateTeamComponent } from './components/create-team/create-team.compon
 import { SignupComponent } from './components/signup/signup.component';
 import { TaskComponent } from './components/task/task.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
+import {TaskManagerComponent} from "./components/task-manager/task-manager.component";
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: 'login', component: LoginComponent },
     { path: 'criarEquipa', component: CreateTeamComponent},
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
-    { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
+  { path: 'tasks', component: TaskComponent,canActivate: [AuthGuardService] },
+  { path: 'tasks-manager', component: TaskManagerComponent ,canActivate: [AuthGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent },
     { path: 'projetos', component: ProjetosComponent},
     { path: '**', component: NotFoundComponent },

@@ -7,5 +7,6 @@ const auth = require('../middleware/auth');
 router.get('/', auth, taskController.all);
 router.post('/add', auth, taskController.add);
 router.delete('/delete/:id', auth, taskController.delete);
+router.post('/edit-users/:id', auth, taskController.editUsers);
 
 module.exports = router;
