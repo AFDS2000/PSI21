@@ -64,7 +64,7 @@ export class AuthService {
                 localStorage.setItem("userType", this.userType);
                 
                 this.isUserLoogedIn$.next(true);
-                this.router.navigate(["criarUtilizador"])
+                this.router.navigate(["home/myTasks"])
             }),
             catchError(this.errorHandlerService.handleError<{
                 token: string; type: string

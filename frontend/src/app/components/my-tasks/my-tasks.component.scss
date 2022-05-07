@@ -1,0 +1,23 @@
+table {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.mat-header-cell {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.mat-column-name {
+   width: 32em;
+}
+
+.mat-column-level {
+    width: 32em;
+    text-align: center;
+}
+
+.mat-column-percentageConclusion {
+    text-align: center;
+}

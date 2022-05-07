@@ -28,10 +28,7 @@ exports.criarProjeto = [
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            res.json({
-                err: errors
-            });
-            return;
+            return next(errors);
         }
 
        

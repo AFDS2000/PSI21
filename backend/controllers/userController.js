@@ -8,3 +8,10 @@ exports.getUsers = (req, res, next) => {
             res.json(users)
         });
 }
+
+exports.getUser = (req, res, next) => {
+    User.findById(req.params.id).exec((err, user) => {
+        if (err) return next(err);
+        res.status(200).json(user);
+    });
+}

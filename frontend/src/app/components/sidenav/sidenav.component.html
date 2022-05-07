@@ -13,6 +13,11 @@
 
         <mat-divider></mat-divider>
 
+        <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/home/myTasks">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+
         <button mat-button class="menu-button" routerLinkActive="list-item-active" routerLink="/tasks">
             <mat-icon>library_books</mat-icon>
             <span>Tarefas</span>
@@ -32,6 +37,11 @@
                     <mat-icon>group_add</mat-icon>
                     <span>Criar Equipa</span>
                 </mat-panel-title>
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active"
+                    routerLink="/consultar/equipaDetail">
+                    <mat-icon>search</mat-icon>
+                    <span>Consultar</span>
+                </mat-panel-title>
             </mat-expansion-panel>
 
             <mat-expansion-panel>
@@ -43,30 +53,21 @@
                 </mat-expansion-panel-header>
                 <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/projetos">
                     <mat-icon>code</mat-icon>
-                    <span>Associar
-                        <br>
-                        Equipas</span>
+                    <span>Associar<br>Equipas</span>
                 </mat-panel-title>
                 <mat-panel-title routerLinkActive="list-item-active" routerLink="/listaProjeto">
                     <mat-icon>code</mat-icon>
-                    <span>Associar
-                    <br>
-                    Tarefas</span>
+                    <span>Associar<br>Tarefas</span>
                 </mat-panel-title>
-                
-            <br>
 
-            <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarProjeto">
-                <mat-icon>create_new_folder</mat-icon>
-                <span>Criar Projeto</span>
-            </mat-panel-title>
+                <mat-panel-title *ngIf="isAdmin" routerLinkActive="list-item-active" routerLink="/criarProjeto">
+                    <mat-icon>create_new_folder</mat-icon>
+                    <span>Criar Projeto</span>
+                </mat-panel-title>
 
             </mat-expansion-panel>
         </mat-accordion>
-        <mat-panel-title routerLinkActive = "list-item-active" routerLink = "/consultar/equipaDetail">
-          <mat-icon>search</mat-icon>
-          <span>Consultar</span>
-        </mat-panel-title>
+
         <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
             routerLink="/criarUtilizador">
             <mat-icon>person</mat-icon>

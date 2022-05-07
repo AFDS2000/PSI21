@@ -20,6 +20,13 @@ export class UserService {
         private errorHandlerService: ErrorHandlerService,
     ) { }
 
+    getUser(id: string): Observable<User> {
+        const url_user = `${this.url}/${id}`;
+        return this.http.get<User>(url_user).pipe(
+            catchError(this.errorHandlerService.handleError<User>('getUser'))
+        );  
+    }
+
     searchUsers(term: string): Observable<User[]> {
         const url_search = `${this.url}/searchUsers?name=${term}`;
         return this.http.get<User[]>(url_search).pipe(
