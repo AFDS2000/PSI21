@@ -3,7 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { Task } from '../../models/task';
 import { AuthService } from 'src/app/services/auth.service';
-import { TaskService } from '../../services/task.service';
+import { TaskService } from 'src/app/services/task.service';
 
 interface Level {
     value: string;

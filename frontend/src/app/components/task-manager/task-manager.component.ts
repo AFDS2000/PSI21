@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from "@angular/forms";
-import { Task } from "../../models/task";
-import { TaskService } from "../../services/task.service";
-import { AuthService } from "../../services/auth.service";
-import { User } from "../../models/user";
-import { UsersService } from "../../services/users.service";
 import { MatTable } from '@angular/material/table';
+
+import { Task } from "src/app/models/task";
+import { User } from "src/app/models/user";
+
+import { UserService } from "src/app/services/user.service";
+import { TaskService } from "src/app/services/task.service";
 
 @Component({
     selector: 'app-task-manager',
@@ -24,10 +25,13 @@ export class TaskManagerComponent implements OnInit {
     taskEditingID: string = "";
     usersOnlyNameMap = (u: User): string => u.name
 
-    constructor(private taskService: TaskService, private usersService: UsersService, private authService: AuthService) { }
+    constructor(
+        private taskService: TaskService,
+        private userService: UserService,
+    ) { }
 
     ngOnInit(): void {
-        this.usersService.getUsers().subscribe(users => {
+        this.userService.getUsers().subscribe(users => {
             this.users = users;
             this.users.forEach(user => {
                 this.usersMap.set(user._id, user);

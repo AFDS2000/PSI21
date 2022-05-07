@@ -27,6 +27,13 @@ export class UserService {
         );
     }
 
+    getUsers() {
+        return this.http.get<User[]>(this.url)
+            .pipe(
+                catchError(this.errorHandlerService.handleError<User[]>('getUsers', []))
+            );
+    }
+
     searchUsers(term: string): Observable<User[]> {
         const url_search = `${this.url}/searchUsers?name=${term}`;
         return this.http.get<User[]>(url_search).pipe(
