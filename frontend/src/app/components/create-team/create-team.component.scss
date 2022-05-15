@@ -22,3 +22,16 @@ button {
     width: 10em;
     margin-top: 2em;
 }
+
+.is-invalid {
+    border-left: solid 6px red;
+}
+
+.col {
+    display: flex;
+
+}
+
+mat-icon {
+    margin-right: 0.2em;
+}

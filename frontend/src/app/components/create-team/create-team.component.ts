@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 
 import { TeamService } from 'src/app/services/team.service'
 import Swal from 'sweetalert2';
+import { CustomValidators } from '../signup/custom-validators';
 
 @Component({
     selector: 'app-create-team',
@@ -24,8 +25,8 @@ export class CreateTeamComponent implements OnInit {
             name: new FormControl("", [
                 Validators.required,
                 Validators.minLength(4),
-                Validators.pattern(/^[a-zA-Z0-9 ]*$/)
-
+                Validators.pattern(/^[a-zA-Z0-9 ]*$/),
+                
             ])
         }
         );
@@ -45,7 +46,7 @@ export class CreateTeamComponent implements OnInit {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Erro ao criar a Equipa',
+                    text: 'O nome da equipa já existe',
                 });
             }
         });
