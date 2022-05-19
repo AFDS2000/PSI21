@@ -20,6 +20,7 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
 import { TaskManagerComponent } from "./components/task-manager/task-manager.component";
+ 
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home/myTasks' },
