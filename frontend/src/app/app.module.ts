@@ -38,6 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
+import { ViewCalendarsComponent } from './components/view-calendars/view-calendars.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { MatTableModule } from '@angular/material/table';
         ShowTeamsComponent,
         ListaProjetosComponent,
         ProjetosComponent,
-        TaskManagerComponent
+        TaskManagerComponent,
+        ViewCalendarsComponent
     ],
     imports: [
         BrowserModule,
