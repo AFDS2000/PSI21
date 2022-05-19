@@ -1,0 +1,45 @@
+<mat-card>
+
+  <h4>Selecionar utilizador para consultar calendario: </h4>
+
+  <mat-form-field appearance="fill" style="margin-top: 1.5em">
+    <mat-label>Select user</mat-label>
+    <mat-select [disabled]="getUsersArray().length == 0"  [(value)]="userSelectedId" (selectionChange)="selectUser()">
+      <mat-option *ngFor="let user of getUsersArray()" [value]="user._id">
+        {{user.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <h4 style="margin-top: 3em;" *ngIf="userSelectedId">Calendario de {{usersMap.get(userSelectedId)?.name}}:</h4>
+
+  <table *ngIf="userSelectedId" mat-table [dataSource]="this.calendarItems" class="mat-elevation-z8" style="margin-top: 1.5em;">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Level Column -->
+    <ng-container matColumnDef="level">
+      <th mat-header-cell *matHeaderCellDef> Nivel </th>
+      <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+    </ng-container>
+
+    <!-- PercentageConclusion Column -->
+    <ng-container matColumnDef="percentageConclusion">
+      <th mat-header-cell *matHeaderCellDef> Percentagem de Conclusão (%) </th>
+      <td mat-cell *matCellDef="let element"> {{element.percentageConclusion}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+
+
+</mat-card>
