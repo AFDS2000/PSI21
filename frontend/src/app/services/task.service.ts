@@ -61,4 +61,11 @@ export class TaskService {
             catchError(this.errorHandlerService.handleError<Task>('editUsersTask'))
         );
     }
+    editPercentageTask(task: Task): Observable<Task> {
+        const url_edit = `${this.url}/update-percentage`;
+
+        return this.http.post<Task>(url_edit, task, this.httpOptions).pipe(
+            catchError(this.errorHandlerService.handleError<Task>('editPercentageTask'))
+        );
+    }
 }

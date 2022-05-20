@@ -67,4 +67,19 @@ exports.getTaskUser = (req, res, next) => {
             if (error) return next(error);
             res.status(200).json(tasks);
         });
-} 
+};
+
+exports.updatePercentage = function (req, res, next) {
+    console.log(req.body);
+
+    Task.findByIdAndUpdate(req.body._id, { percentageConclusion: req.body.percentageConclusion }, {}, function (err) {
+        if (err) {
+             err.statusCode = 500;
+            return next(err);
+        }
+    });
+    res.status(201).json({
+        message: "Projeto criado com sucesso!"
+    });
+    
+};

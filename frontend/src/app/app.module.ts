@@ -38,7 +38,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
+import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
 import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
     declarations: [
@@ -57,7 +59,8 @@ import {MatListModule} from '@angular/material/list';
         ShowTeamsComponent,
         ListaProjetosComponent,
         ProjetosComponent,
-        TaskManagerComponent
+        TaskManagerComponent,
+        TarefaPercentagemComponent
     ],
     imports: [
         MatListModule,
