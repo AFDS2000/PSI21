@@ -21,12 +21,14 @@ import { ListaProjetosComponent } from './components/lista-projetos/lista-projet
 import { ProjetosComponent } from './components/projetos/projetos.component';
 import { TaskManagerComponent } from "./components/task-manager/task-manager.component";
 import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
+import {TasksTimestampsComponent} from "./components/tasks-timestamps/tasks-timestamps.component";
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home/myTasks' },
     { path: 'login', component: LoginComponent, canActivate: [LoginGuardService] },
     { path: 'tasks', component: TaskComponent, canActivate: [AuthGuardService] },
     { path: 'tasks-manager', component: TaskManagerComponent, canActivate: [AuthGuardService] },
+    { path: 'tasks-timestamps', component: TasksTimestampsComponent, canActivate: [AuthGuardService] },
 
     {
         path: 'home', component: HomeComponent, canActivate: [AuthGuardService], children: [
