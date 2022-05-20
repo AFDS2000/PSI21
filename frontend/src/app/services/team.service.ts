@@ -14,6 +14,7 @@ export class TeamService {
 
 //    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/team';
 private url = 'http://localhost:3021/team';
+
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
