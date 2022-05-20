@@ -12,7 +12,8 @@ import { User } from "../models/user";
 })
 export class TaskService {
 
-    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/task';
+//    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/task';
+private url = 'http://localhost:3021/task';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })

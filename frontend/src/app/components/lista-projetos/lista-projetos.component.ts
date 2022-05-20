@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatTable } from '@angular/material/table';
 import { Task } from 'src/app/models/task';
 
 import { ProjetosService } from 'src/app/services/projetos.service';
@@ -13,104 +14,72 @@ import { Project } from '../../models/project';
     styleUrls: ['./lista-projetos.component.scss']
 })
 export class ListaProjetosComponent implements OnInit {
-    viewForm!: FormGroup;
-    associarTask!: FormGroup;
-    desassociarTask!: FormGroup;
+    @ViewChild(MatTable) table!: MatTable<any>;
     projects: Project[] = [];
-    project!: Project;
+    tasksMap: Map<string, Task> = new Map<string, Task>();
+    projectsMap: Map<string, Project> = new Map<string, Project>();
     tasks: Task[] = [];
-    tasksAdd: Task[] = [];
-    tasksRemove: Task[] = [];
+    displayedColumns: string[] = ['name', 'alias', 'tasks', 'edit'];
+    editMode: boolean = false;
+    tasksEditing = new FormControl();
+    tasksOnlyNameMap = (t: Task): string => t.name
+    project!: Project;
 
     constructor(private projetosService: ProjetosService, private taskService: TaskService) { }
 
     ngOnInit(): void {
-        this.viewForm = this.createFormGroup();
-        this.desassociarTask = this.createFormGroupDelete();
-        this.associarTask = this.createFormGroupAdd();
-        this.getProjects();
         this.getTasks();
-    }
-
-    createFormGroup(): FormGroup {
-        return new FormGroup({
-            projeto: new FormControl('', [Validators.required]),
-        });
-    }
-
-    createFormGroupAdd(): FormGroup {
-        return new FormGroup({
-            task: new FormControl('', [Validators.required]),
-        });
-    }
-
-    createFormGroupDelete(): FormGroup {
-        return new FormGroup({
-            task: new FormControl('', [Validators.required]),
-        });
+        this.getProjects(); 
     }
 
     getProjects(): void {
         this.projetosService.getProjects()
-            .subscribe(projects => this.projects = projects);
-    }
-
-    updateTasks(): void {
-        this.tasksRemove = [];
-        this.tasksAdd = [];
-        this.project = this.viewForm.value.projeto;
-        if (this.project.tasks != null) {
-            for (var i = 0; i < this.tasks.length; i++) {
-                var existeOutro = false;
-                for (var j = 0; j < this.projects.length; j++) {
-                    if (this.projects[j].tasks!.includes(this.tasks[i]._id) && this.projects[j]._id != this.project._id) {
-                        existeOutro = true;
-                    }
-                }
-                if (!existeOutro) {
-                    if (this.project.tasks.includes(this.tasks[i]._id)) {
-                        this.tasksRemove.push(this.tasks[i]);
-                    } else {
-                        this.tasksAdd.push(this.tasks[i])
-                    }
-                }
-            }
-        }
-        this.tasks = [];
-        this.getTasks();
-    }
-
-    associar(): void {
-        if (this.project.tasks) {
-            this.project.tasks.push(this.associarTask.value.task);
-        } else {
-            this.project.tasks = [this.associarTask.value.task];
-        }
-        this.projetosService.updateTasks(this.project)
-            .subscribe(() => {
-                this.getProjects();
+            .subscribe(projects => {
+                this.projects = projects;
+                this.projects.forEach(project => {
+                    this.projectsMap.set(project._id, project);
+                })
+                this.table.renderRows();
             });
-        this.updateTasks();
     }
-
-    desassociar(): void {
-
-        this.project.tasks = [];
-        for (var i = 0; i < this.tasksRemove.length; i++) {
-            if (this.tasksRemove[i]._id != this.desassociarTask.value.task._id) {
-                this.project.tasks.push(this.tasksRemove[i]._id)
-            }
-        }
-        this.projetosService.updateTasks(this.project)
-            .subscribe(() => {
-                this.getProjects();
-            });
-        this.updateTasks();
-
-    }
-
     getTasks(): void {
         this.taskService.getTasks()
-            .subscribe(tasks => this.tasks = tasks);
+            .subscribe(tasks => {
+                this.tasks = tasks;
+                this.tasks.forEach(task => {
+                    this.tasksMap.set(task._id, task);
+                })
+                this.table.renderRows();
+            });
+    }
+
+    edit(projectID: string):void {
+        this.editMode = true;
+        var tasksMapTemp = new Map<string, Task>(this.tasksMap);
+        var listaTasks = [];
+        for( var i = 0; i<this.projects.length;i++){
+            if(this.projects[i].tasks!=null){
+                for( var j =0; j< this.projects[i].tasks?.length!;j++){
+                    if(tasksMapTemp.has(this.projects[i].tasks![j]) && this.projects[i]._id != projectID){
+                        tasksMapTemp.delete(this.projects[i].tasks![j]);
+                    }
+                    if(tasksMapTemp.has(this.projects[i].tasks![j]) && this.projects[i]._id == projectID){
+                        listaTasks.push( tasksMapTemp.get(this.projects[i].tasks![j] ));
+                    }
+                }
+            }
+        }
+        this.project = this.projectsMap.get(projectID)!;
+        this.tasksEditing.setValue( listaTasks )
+        this.tasks = Array.from( tasksMapTemp.values() );
+    }
+
+    save():void {
+        this.project.tasks = this.tasksEditing.value;
+        this.projetosService.updateTasks(this.project)
+        .subscribe(() => {
+            this.getProjects();
+            this.editMode=false;
+        });
     }
 }

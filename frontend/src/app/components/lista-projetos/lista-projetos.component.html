@@ -1,57 +1,69 @@
-<div class="main">
-    <form [formGroup]="viewForm" #formDirective="ngForm" class="form">
-        <div class="divForm">
-            <mat-form-field class="projeto" appearance="fill">
-                <mat-label>Lista de Projetos</mat-label>
-                <mat-select formControlName="projeto" (selectionChange)="updateTasks()">
-                    <mat-option *ngFor="let project of projects" [value]="project">
-                        Project: {{project.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="divCard">
-            <mat-card>
-                <mat-card-title>
-                    Associar Tarefas
-                </mat-card-title>
-                <mat-card-content>
-                    <form [formGroup]="associarTask" (ngSubmit)="associar()">
-                        <mat-form-field class="task-add" appearance="fill">
-                            <mat-label>Lista de Tarefas</mat-label>
-                            <mat-select formControlName="task">
-                                <mat-option *ngFor="let task of tasksAdd" [value]="task">
-                                    Nome: {{task.name}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <button color="primary" [disabled]="!associarTask.valid" mat-raised-button type="submit">
-                            <span>Associar</span>
-                        </button>
-                    </form>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-title>
-                    Desassociar Tarefas
-                </mat-card-title>
-                <mat-card-content>
-                    <form [formGroup]="desassociarTask" (ngSubmit)="desassociar()">
-                        <mat-form-field class="task-remove" appearance="fill">
-                            <mat-label>Lista de Tarefas</mat-label>
-                            <mat-select formControlName="task">
-                                <mat-option *ngFor="let task of tasksRemove" [value]="task">
-                                    Nome: {{task.name}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <button color="primary" [disabled]="!desassociarTask.valid" mat-raised-button type="submit">
-                            <span>Desassociar</span>
-                        </button>
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </form>
+<mat-card>
+    <mat-card-title>
+        Gerir tarefas dos projetos
+    </mat-card-title>
+    <mat-card-content>
+        <table mat-table [dataSource]="this.projects" class="mat-elevation-z8" style="margin-top: 2em; width: 100%;">
 
-</div>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Level Column -->
+            <ng-container matColumnDef="alias">
+                <th mat-header-cell *matHeaderCellDef> Alias </th>
+                <td mat-cell *matCellDef="let element"> {{element.alias}} </td>
+            </ng-container>
+
+            <!-- Users Column -->
+            <ng-container matColumnDef="tasks">
+                <th mat-header-cell *matHeaderCellDef> Tarefas </th>
+                <td mat-cell *matCellDef="let element">
+                    <ul>
+                        <li *ngFor="let taskID of element.tasks">{{this.tasksMap.get(taskID)?.name}}</li>
+                    </ul>
+                </td>
+            </ng-container>
+
+            <!-- Edit Column -->
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                    <button color="primary" [disabled]="editMode" mat-raised-button type="button"
+                        (click)="edit(element._id)">
+                        <span>Editar</span>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </mat-card-content>
+</mat-card>
+
+
+
+<mat-card *ngIf="editMode">
+    <mat-card-title>
+        Editar tarefas do projeto
+    </mat-card-title>
+    <mat-card-content>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Tarefas</mat-label>
+            <mat-select [formControl]="tasksEditing" multiple >
+                <mat-option *ngFor="let topping of tasks" [value]="topping">{{topping.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <button color="primary" mat-raised-button type="button" (click)="save()">
+            <span>Guardar Alterações</span>
+        </button>
+    </mat-card-content>
+</mat-card>

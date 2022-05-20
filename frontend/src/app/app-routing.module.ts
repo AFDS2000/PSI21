@@ -42,7 +42,7 @@ const routes: Routes = [
         ]
     },
     { path: 'projetos', component: ProjetosComponent, canActivate: [AuthGuardService, AdminGuardService] },
-    { path: 'listaProjeto', component: ListaProjetosComponent, canActivate: [AuthGuardService, AdminGuardService] },
+    { path: 'listaProjeto', component: ListaProjetosComponent, canActivate: [AuthGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: '**', component: NotFoundComponent, canActivate: [AuthGuardService] },
