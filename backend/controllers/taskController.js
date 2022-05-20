@@ -83,3 +83,20 @@ exports.updatePercentage = function (req, res, next) {
     });
     
 };
+
+exports.setTimestamps = async function (req, res, next) {
+    const task = await Task.findOne({ '_id': req.params.id });
+
+    if (!req.body || !req.body.tsStart || !req.body.tsEnd) {
+        err.statusCode = 500;
+        return next(err);
+    }
+
+    task.tsStart = req.body.tsStart;
+    task.tsEnd = req.body.tsEnd;
+
+    task.save((error, task) => {
+        if (error) return next(error);
+        res.status(200).json(task);
+    });
+};
