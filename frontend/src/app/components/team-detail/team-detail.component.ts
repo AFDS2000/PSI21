@@ -22,6 +22,9 @@ export class TeamDetailComponent implements OnInit {
     user: User | undefined;
     displayedColumns: string[] = ['name'];
     users$!: Observable<User[]>;
+    users!: Observable<User[]>;
+    clicked = false;
+
     private searchTerms = new Subject<string>();
 
     constructor(
@@ -37,7 +40,7 @@ export class TeamDetailComponent implements OnInit {
     ngOnInit(): void {
         this.getTeam();
         this.users$ = this.searchTerms.pipe(
-            // wait 300ms after each keystroke before considering the term
+             //wait 300ms after each keystroke before considering the term
             debounceTime(300),
 
             // ignore new term if same as previous term
@@ -46,6 +49,16 @@ export class TeamDetailComponent implements OnInit {
             // switch to new search observable each time the term changes
             switchMap((term: string) => this.userService.searchUsers(term))
         );
+
+        this.users = this.getUsers();
+    }
+
+    onKeyUp() : void {
+        this.addUser();
+    }
+
+    getUsers() : Observable<User[]> {
+        return this.userService.getUsers();
     }
 
     getTeam(): void {
@@ -55,6 +68,7 @@ export class TeamDetailComponent implements OnInit {
 
     setUser(user: User): void {
         this.user = user;
+        
     }
 
     addUser(): void {
@@ -68,6 +82,7 @@ export class TeamDetailComponent implements OnInit {
                         timer: 1500
                     });
                     this.getTeam();
+                    
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -76,7 +91,7 @@ export class TeamDetailComponent implements OnInit {
                     });
                 }
             });
-
+            
     }
 
     deleteUser(user: User): void {
