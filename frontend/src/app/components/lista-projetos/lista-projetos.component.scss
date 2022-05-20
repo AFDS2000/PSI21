@@ -1,12 +1,19 @@
-.form {
-    display: flex;
-    flex-direction: row;
+button {
+    position: relative;
+    margin-left: auto;
+    display: block;
 }
 
 mat-card {
     margin: 1em auto;
-    width: 40em;
-    height: 15em;
+    width: 75%;
+}
+
+@media screen and (max-width: 1000px) {
+    mat-card {
+        margin: 0 auto;
+        width: calc(100% - 80px);
+    }
 }
 
 mat-form-field,
@@ -15,81 +22,15 @@ mat-checkbox {
     margin-top: 1em;
 }
 
-.divCard {
-    margin-left: 2em;
-
+table {
+    width: 100%;
+    overflow-x: scroll;
 }
 
-.divCard>mat-card {
-    margin: 4em auto;
-    width: 40em;
-    height: 25em;
+li {
+    list-style-type: none;
 }
 
-
-.divForm {
-    width: 20em;
-
-}
-
-.projeto {
-    height: min-content;
-}
-
-.cardTarefas {
-    width: 10em;
-    height: 20em;
-}
-
-button {
-    width: 10em;
-    margin-left: 2em;
-    float: right;
-
-}
-
-@media screen and (max-width: 1000px) {
-    .main {
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        width: calc(100% - 80px);
-    }
-
-    .divForm {
-        width: calc(100% - 80px);
-
-    }
-
-    .form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    mat-card {
-        width: calc(100% - 80px);
-        margin: 4em auto;
-    }
-
-    .divCard {
-        margin-left: 0px;
-
-    }
-
-    .cardTarefas {
-
-        width: calc(100% - 80px);
-        height: 20em;
-    }
-
-    .divCard>mat-card {
-        margin: 4em auto;
-        width: calc(100% - 80px);
-        height: 25em;
-    }
-
-    .cardTarefas {
-        width: calc(100% - 80px);
-        height: 20em;
-    }
+.mat-column-percentageConclusion {
+    text-align: center;
 }
