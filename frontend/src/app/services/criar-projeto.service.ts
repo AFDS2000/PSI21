@@ -11,8 +11,11 @@ import { ErrorHandlerService } from './error-handler.service';
 })
 export class CriarProjetoService {
 
-    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/projects/criarProjeto/';
-    private url2 = 'http://appserver.alunos.di.fc.ul.pt/projects/listaProjetos/';
+    //private url = 'http://appserver.alunos.di.fc.ul.pt:3021/projects/criarProjeto/';
+    //private url2 = 'http://appserver.alunos.di.fc.ul.pt:3021/projects/listaProjetos/';
+
+    private url = 'http://localhost:3021/projects/criarProjeto/';
+    private url2 = 'http://localhost:3021/projects/listaProjetos/';
   
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
