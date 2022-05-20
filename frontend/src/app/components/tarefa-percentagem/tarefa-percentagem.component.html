@@ -1,9 +1,9 @@
 <mat-card>
     <mat-card-title>
-        Gerir tarefas dos projetos
+        Gerir equipas dos projetos
     </mat-card-title>
     <mat-card-content>
-        <table mat-table [dataSource]="this.projects" class="mat-elevation-z8" style="margin-top: 2em; width: 100%;">
+        <table mat-table [dataSource]="this.tasks" class="mat-elevation-z8" style="margin-top: 2em; width: 100%;">
 
             <!-- Name Column -->
             <ng-container matColumnDef="name">
@@ -12,19 +12,15 @@
             </ng-container>
 
             <!-- Level Column -->
-            <ng-container matColumnDef="alias">
-                <th mat-header-cell *matHeaderCellDef> Alias </th>
-                <td mat-cell *matCellDef="let element"> {{element.alias}} </td>
+            <ng-container matColumnDef="level">
+                <th mat-header-cell *matHeaderCellDef> Nivel </th>
+                <td mat-cell *matCellDef="let element"> {{element.level}} </td>
             </ng-container>
 
             <!-- Users Column -->
-            <ng-container matColumnDef="tasks">
-                <th mat-header-cell *matHeaderCellDef> Tarefas </th>
-                <td mat-cell *matCellDef="let element">
-                    <ul>
-                        <li *ngFor="let taskID of element.tasks">{{this.tasksMap.get(taskID)?.name}}</li>
-                    </ul>
-                </td>
+            <ng-container matColumnDef="percentageConclusion">
+                <th mat-header-cell *matHeaderCellDef> Percentagem (%) </th>
+                <td mat-cell *matCellDef="let element"> {{element.percentageConclusion}} </td>
             </ng-container>
 
             <!-- Edit Column -->
@@ -49,19 +45,17 @@
 
 <mat-card *ngIf="editMode">
     <mat-card-title>
-        Editar tarefas do projeto
+        Editar equipa do projeto
     </mat-card-title>
     <mat-card-content>
 
         <mat-form-field appearance="fill">
-            <mat-label>Tarefas</mat-label>
-            <mat-select [formControl]="tasksEditing" multiple >
-                <mat-option *ngFor="let topping of tasks" [value]="topping">{{topping.name}}
-                </mat-option>
-            </mat-select>
+            <mat-label>Percentagem</mat-label>
+            <input type="number" matInput [formControl]="tasksEditing">
+            <mat-error *ngIf="tasksEditing.hasError('max') || tasksEditing.hasError('min')">
+                A percentagem deve ser entre 0 e 100
+              </mat-error>
         </mat-form-field>
-
-
         <button color="primary" mat-raised-button type="button" (click)="save()">
             <span>Guardar Alterações</span>
         </button>
