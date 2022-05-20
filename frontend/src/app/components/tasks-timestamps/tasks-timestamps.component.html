@@ -41,7 +41,7 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
           <button color="primary" [disabled]="editMode" mat-raised-button type="button"
-                  (click)="edit(element._id)">
+                  (click)="edit(element)">
             <span>Editar</span>
           </button>
         </td>
@@ -62,34 +62,52 @@
   </mat-card-title>
   <mat-card-content>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Data de Inicio</mat-label>
-      <input matInput [matDatepickerFilter]="afterNowFilter" (dateChange)="dateStart = $event.value" [matDatepicker]="pickerStart" >
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-      <mat-datepicker #pickerStart></mat-datepicker>
-    </mat-form-field>
+    <form [formGroup]="datesForm" (ngSubmit)="save()">
+      <mat-form-field appearance="fill">
+        <mat-label>Data de Inicio</mat-label>
+        <input matInput [matDatepickerFilter]="afterNowFilter" (dateChange)="dateStart = $event.value"  [matDatepicker]="pickerStart" formControlName="dateStart">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart></mat-datepicker>
+
+        <mat-error *ngIf="datesForm.get('dateStart')?.hasError('matDatepickerFilter')">
+          Datas no passado não são aceites.
+        </mat-error>
+
+        <mat-error *ngIf="datesForm.get('dateStart')?.hasError('required')">
+          Data de inicio é um campo obrigatorio.
+        </mat-error>
+      </mat-form-field>
 
 
-    <mat-form-field appearance="fill">
-      <mat-label>Data de Fim</mat-label>
-      <input matInput [matDatepickerFilter]="afterStartFilter" (dateChange)="dateEnd = $event.value" [matDatepicker]="pickerEnd">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEnd></mat-datepicker>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Data de Fim</mat-label>
+        <input matInput [matDatepickerFilter]="afterStartFilter" (dateChange)="dateEnd = $event.value" [matDatepicker]="pickerEnd" formControlName="dateEnd">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
 
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>Users</mat-label>-->
-<!--      <mat-select [formControl]="usersEditing" multiple>-->
-<!--        <mat-option *ngFor="let topping of users.map(usersOnlyNameMap)" [value]="topping">{{topping}}-->
-<!--        </mat-option>-->
-<!--      </mat-select>-->
-<!--    </mat-form-field>-->
+        <mat-error *ngIf="!datesForm.valid && datesForm.get('dateEnd')?.hasError('matDatepickerFilter')">
+          Datas anteriores à data de inicio não são aceites.
+        </mat-error>
+
+        <mat-error *ngIf="!datesForm.valid && datesForm.get('dateEnd')?.hasError('required')">
+          Data de fim é um campo obrigatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="!datesForm.valid && datesForm.hasError('overlap')">
+        Esta tarefa está sobreposta com outra tarefa urgente.
+      </mat-error>
+      <button color="primary" mat-raised-button type="submit">
+        <span>Guardar Alterações</span>
+      </button>
+    </form>
 
 
-    <button color="primary" mat-raised-button type="button" (click)="save()">
-      <span>Guardar Alterações</span>
-    </button>
+
+
+
+
   </mat-card-content>
 </mat-card>
