@@ -1,0 +1,63 @@
+<mat-card>
+    <mat-card-title>
+        Gerir equipas dos projetos
+    </mat-card-title>
+    <mat-card-content>
+        <table mat-table [dataSource]="this.tasks" class="mat-elevation-z8" style="margin-top: 2em; width: 100%;">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Level Column -->
+            <ng-container matColumnDef="level">
+                <th mat-header-cell *matHeaderCellDef> Nivel </th>
+                <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+            </ng-container>
+
+            <!-- Users Column -->
+            <ng-container matColumnDef="percentageConclusion">
+                <th mat-header-cell *matHeaderCellDef> Percentagem (%) </th>
+                <td mat-cell *matCellDef="let element"> {{element.percentageConclusion}} </td>
+            </ng-container>
+
+            <!-- Edit Column -->
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                    <button color="primary" [disabled]="editMode" mat-raised-button type="button"
+                        (click)="edit(element._id)">
+                        <span>Editar</span>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </mat-card-content>
+</mat-card>
+
+
+
+<mat-card *ngIf="editMode">
+    <mat-card-title>
+        Editar equipa do projeto
+    </mat-card-title>
+    <mat-card-content>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Percentagem</mat-label>
+            <input type="number" matInput [formControl]="tasksEditing">
+            <mat-error *ngIf="tasksEditing.hasError('max') || tasksEditing.hasError('min')">
+                A percentagem deve ser entre 0 e 100
+              </mat-error>
+        </mat-form-field>
+        <button color="primary" mat-raised-button type="button" (click)="save()">
+            <span>Guardar Alterações</span>
+        </button>
+    </mat-card-content>
+</mat-card>
