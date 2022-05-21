@@ -4,6 +4,7 @@ import { UnavailableService } from 'src/app/services/unavailable.service';
 import { Unavailable } from 'src/app/models/unavailable';
 
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-unavailable',
@@ -15,9 +16,10 @@ export class UnavailableComponent implements OnInit {
   
   un: Unavailable | undefined;
 
-
   constructor(private unService: UnavailableService) {    
+    
   }
+
 
   ngOnInit(): void {
   }
