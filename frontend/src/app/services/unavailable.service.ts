@@ -12,7 +12,7 @@ import { ErrorHandlerService } from './error-handler.service';
 })
 export class UnavailableService {
   
-  private url = 'http://localhost:3071/unavailable';
+  private url = 'http://localhost:3021/unavailable';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -21,13 +21,14 @@ export class UnavailableService {
   constructor(
     private http: HttpClient,
     private errorHandlerService: ErrorHandlerService,
-    ) { }
+    ) {}
 
   addUnavailable(un: Unavailable): Observable<Unavailable>{
-    return this.http.put<Unavailable>(this.url, {un}, this.httpOptions).pipe(
+    //const url_add = `${this.url}`;
+    return this.http.post<Unavailable>(this.url, {un}, this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Unavailable>('addUnavailable'))
-  );;
+  );
   }
   
 }

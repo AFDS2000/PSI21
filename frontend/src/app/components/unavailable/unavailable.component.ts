@@ -14,19 +14,32 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class UnavailableComponent implements OnInit {
   
-  un: Unavailable | undefined;
+  unavailableForm!: FormGroup;
+  minDate = new Date();
+  
 
   constructor(private unService: UnavailableService) {    
-    
   }
 
 
   ngOnInit(): void {
+    this.unavailableForm = this.createFormGroup();
+  }
+
+  createFormGroup(): FormGroup {
+    return new FormGroup({
+      dayUn: new FormControl("",[
+        Validators.required,
+      ]),
+      hStart: new FormControl("", 
+        Validators.required),
+      hEnd: new FormControl("", 
+        Validators.required)
+      });
   }
 
   addUna(): void {
-    if(this.un)
-      this.unService.addUnavailable(this.un).subscribe((msg) => {
+      this.unService.addUnavailable(this.unavailableForm.value).subscribe((msg) => {
         if (msg) {
             Swal.fire({
                 icon: 'success',
@@ -34,12 +47,15 @@ export class UnavailableComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
             });
+            this.unavailableForm.reset()
           }else{
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Erro ao adicionar o Periodo',
           });
+            this.unavailableForm.reset()
+          
         }
     })
   }
