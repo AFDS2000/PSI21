@@ -1,0 +1,51 @@
+
+<mat-card>
+    <mat-card-title>
+        Marcar Períodos de Indisponibilidade
+    </mat-card-title>
+    
+    <br>
+
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Escolha a data:</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <br>
+        <br>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Escolha a hora de inicio:</mat-label>
+            <input matInput type="time">
+            <mat-hint>HH:mm</mat-hint>
+        </mat-form-field>
+
+        <br>
+        <br>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Escolha a hora de fim:</mat-label>
+            <input matInput type="time">
+            <mat-hint>HH:mm</mat-hint>
+        </mat-form-field>
+    
+        <br>
+        <br>
+        
+        <button mat-raised-button [disabled]="" (click)="addUna()" color="primary" type="submit">
+            <mat-icon>add_circle</mat-icon>
+            <span>
+                Marcar
+            </span>
+        </button>
+
+    </mat-card-content>    
+</mat-card>
+
+
+
+

@@ -20,6 +20,7 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
 import { TaskManagerComponent } from "./components/task-manager/task-manager.component";
+import { UnavailableComponent } from './components/unavailable/unavailable.component';
  
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
             { path: 'equipaDetail', component: ShowTeamsComponent, canActivate: [AuthGuardService, AdminGuardService] }
         ]
     },
+    { path: 'unavailable', component: UnavailableComponent, canActivate: [AuthGuardService, AdminGuardService]},
     { path: 'projetos', component: ProjetosComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'listaProjeto', component: ListaProjetosComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent, canActivate: [AuthGuardService, AdminGuardService] },
