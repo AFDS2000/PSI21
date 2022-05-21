@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { Reuniao } from 'src/app/models/reuniao';
@@ -7,6 +7,8 @@ import { Reuniao } from 'src/app/models/reuniao';
 import { User } from 'src/app/models/user';
 import { CriarReunioesService } from 'src/app/services/criar-reunioes.service';
 import { UserService } from 'src/app/services/user.service';
+
+
 
 import Swal from 'sweetalert2';
 
@@ -46,17 +48,48 @@ export class CriarReunioesComponent implements OnInit {
     this.reunioesForm = this.createFormGroup()
   }
 
+  divisibleBy30(control:FormGroup) {
+    return parseInt(control.value) % 30 == 0 ? null : {
+      divisibleBy30: true
+    }
+}
+
+  diferenteDeZero(control:FormGroup) {
+  return parseInt(control.value) != 0 ? null : {
+    diferenteDeZero: true
+  }
+}
+weekendsDatesFilter = (d: Date | null): boolean => {
+  const day = (d || new Date()).getDay();
+
+  return day !== 0 && day !== 6 ;
+}
+
+
+
   createFormGroup(): FormGroup {
     return new FormGroup({
-      users: new FormControl(""),
+      users: new FormControl("",  [
+        Validators.required]),
+     
+      type: new FormControl("",  [
+        Validators.required]),
 
-      type: new FormControl(""),
+      startDate: new FormControl("",  [
+        Validators.required]),
 
-      startDate: new FormControl(""),
+      endDate: new FormControl("",  [
+        Validators.required]),
 
-      endDate: new FormControl(""),
-
-      duration: new FormControl("")
+      duration: new FormControl("", [
+        Validators.required,
+        Validators.min(30),
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+        this.divisibleBy30,
+        this.diferenteDeZero,
+      ]),
+      hourStart:new FormControl("",  [
+        Validators.required]),
 
     });
   }
@@ -73,6 +106,7 @@ export class CriarReunioesComponent implements OnInit {
   const endDate = this.reunioesForm.value.endDate;
   const type = this.reunioesForm.value.type;
   const duration = this.reunioesForm.value.duration;
+  const hourStart = this.reunioesForm.value.hourStart;
 
   let users: string[] = [];
 
@@ -82,7 +116,7 @@ export class CriarReunioesComponent implements OnInit {
     users.push(this.usersMap.get(usersName[i])!._id);
   }
 
-  console.log(users, startDate, endDate, type, duration)
+  console.log(users, startDate, endDate, type, duration, hourStart)
 
     this.criarReunioesService.addReuniao(
         {
@@ -91,6 +125,7 @@ export class CriarReunioesComponent implements OnInit {
   startDate,
   endDate,
   duration,
+  hourStart,
 } as Reuniao).subscribe((msg) => { if (msg) {
   Swal.fire({
     icon: 'success',

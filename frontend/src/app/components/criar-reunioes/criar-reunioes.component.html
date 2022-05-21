@@ -8,7 +8,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Utilizadores</mat-label>
                 <mat-select formControlName="users" multiple>
-                    <mat-option  *ngFor="let topping of users.map(usersOnlyNameMap)" [value]="topping">
+                    <mat-option *ngFor="let topping of users.map(usersOnlyNameMap)" [value]="topping">
                         {{topping}}
                     </mat-option>
                 </mat-select>
@@ -16,18 +16,40 @@
 
             <mat-form-field>
                 <mat-label>Tempo estimado para a reunião</mat-label>
-                <input matInput type="Number" formControlName="duration">
+                <input matInput type="Number" step="30" min="30" formControlName="duration">
             </mat-form-field>
-       
+            <mat-label class="col"
+                [ngStyle]="{'color': reunioesForm.controls['duration'].hasError('required') || reunioesForm.controls['duration'].hasError('divisibleBy30') ? 'red' : 'green'}">
+                <mat-icon>
+                    {{ reunioesForm.controls['duration'].hasError('required') ||
+                    reunioesForm.controls['duration'].hasError('divisibleBy30') ? 'cancel' : 'check_circle' }}
+                </mat-icon>
+                O Tempo estimado deverá ser multiplo de 30 e diferente de 0 (ex.: 30, 60, 90)
+            </mat-label>
+            <br>
+            <mat-label class="col"
+                [ngStyle]="{'color': reunioesForm.controls['duration'].hasError('required') || reunioesForm.controls['duration'].hasError('diferenteDeZero') ? 'red' : 'green'}">
+                <mat-icon>
+                    {{ reunioesForm.controls['duration'].hasError('required') ||
+                    reunioesForm.controls['duration'].hasError('diferenteDeZero') ? 'cancel' : 'check_circle' }}
+                </mat-icon>
+                O Tempo estimado deverá ser diferente de 0
+            </mat-label>
+
             <mat-form-field appearance="fill">
                 <mat-label>Defina um periodo para agendar uma reunião</mat-label>
-                <mat-date-range-input [rangePicker]="picker" [min]="minDate">
-                    <input matStartDate formControlName="startDate"  placeholder="Start date">
+                <mat-date-range-input [rangePicker]="picker" [dateFilter]="weekendsDatesFilter" [min]="minDate">
+                    <input matStartDate formControlName="startDate" placeholder="Start date">
                     <input matEndDate formControlName="endDate" placeholder="End date">
                 </mat-date-range-input>
                 <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Escolha a hora da reuniao entre as 9h30min e as 17h30min</mat-label>
+                <input matInput type="time" placeholder="HH:mm:ss" min="09:30:00" max="17:30:00" formControlName="hourStart" >
             </mat-form-field>
 
             <mat-form-field appearance="fill">

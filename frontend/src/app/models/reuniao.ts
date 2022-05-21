@@ -5,4 +5,5 @@ export interface Reuniao {
     endDate: Date | null;
     users: Array<string>;
     type: string;
+    hourStart: string;
 }

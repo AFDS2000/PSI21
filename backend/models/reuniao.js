@@ -7,7 +7,8 @@ var ReuniaoSchema = new Schema({
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     duration: { type: Number, required: true },
-    users: { type: [Schema.ObjectId], ref: 'User', required: false }
+    users: { type: [Schema.ObjectId], ref: 'User', required: false },
+    hourStart: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Reuniao', ReuniaoSchema);

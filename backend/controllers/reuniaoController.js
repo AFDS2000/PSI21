@@ -4,7 +4,8 @@ const { body, validationResult } = require('express-validator');
 const Reuniao = require('../models/reuniao');
 
 exports.criarReuniao = [
-   
+    body('duration').trim().toInt().isDivisibleBy(30).withMessage('Deverá ser multiplo de 30'),
+
     (req, res, next) => {
         console.log(req.body)
         const errors = validationResult(req);
@@ -20,6 +21,8 @@ exports.criarReuniao = [
             endDate: req.body.endDate,
             duration: req.body.duration,
             users: req.body.users,
+            hourStart: req.body.hourStart,
+
         });
 
         reuniao.save((err) => {

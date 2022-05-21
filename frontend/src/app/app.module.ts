@@ -39,7 +39,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunioes.component';
 
 
@@ -87,7 +87,8 @@ import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunio
         MatSelectModule,
         MatCardModule,
         MatCommonModule,
-        MatTableModule
+        MatTableModule,
+       
     ],
     providers: [
         {
