@@ -67,4 +67,36 @@ exports.getTaskUser = (req, res, next) => {
             if (error) return next(error);
             res.status(200).json(tasks);
         });
-} 
+};
+
+exports.updatePercentage = function (req, res, next) {
+    console.log(req.body);
+
+    Task.findByIdAndUpdate(req.body._id, { percentageConclusion: req.body.percentageConclusion }, {}, function (err) {
+        if (err) {
+             err.statusCode = 500;
+            return next(err);
+        }
+    });
+    res.status(201).json({
+        message: "Projeto criado com sucesso!"
+    });
+    
+};
+
+exports.setTimestamps = async function (req, res, next) {
+    const task = await Task.findOne({ '_id': req.params.id });
+
+    if (!req.body || !req.body.tsStart || !req.body.tsEnd) {
+        err.statusCode = 500;
+        return next(err);
+    }
+
+    task.tsStart = req.body.tsStart;
+    task.tsEnd = req.body.tsEnd;
+
+    task.save((error, task) => {
+        if (error) return next(error);
+        res.status(200).json(task);
+    });
+};

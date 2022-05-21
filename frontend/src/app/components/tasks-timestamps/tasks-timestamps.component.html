@@ -1,0 +1,113 @@
+<mat-card>
+  <mat-card-title>
+    Gerir Tarefas
+  </mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="this.tasks" class="mat-elevation-z8" style="margin-top: 2em;">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Level Column -->
+      <ng-container matColumnDef="level">
+        <th mat-header-cell *matHeaderCellDef> Nivel </th>
+        <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+      </ng-container>
+
+      <!-- PercentageConclusion Column -->
+      <ng-container matColumnDef="percentageConclusion">
+        <th mat-header-cell *matHeaderCellDef> Percentagem de Conclusão (%) </th>
+        <td mat-cell *matCellDef="let element"> {{element.percentageConclusion}} </td>
+      </ng-container>
+
+      <!-- tsStart Column -->
+      <ng-container matColumnDef="tsStart">
+        <th mat-header-cell *matHeaderCellDef> Data Inicio </th>
+        <td mat-cell *matCellDef="let element"> {{toDateString(element.tsStart)}} </td>
+      </ng-container>
+
+      <!-- tsEnd Column -->
+      <ng-container matColumnDef="tsEnd">
+        <th mat-header-cell *matHeaderCellDef> Data Fim </th>
+        <td mat-cell *matCellDef="let element"> {{toDateString(element.tsEnd)}} </td>
+
+      </ng-container>
+
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <button color="primary" [disabled]="editMode" mat-raised-button type="button"
+                  (click)="edit(element)">
+            <span>Editar</span>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </mat-card-content>
+</mat-card>
+
+
+
+<mat-card *ngIf="editMode">
+  <mat-card-title>
+    Editar Tarefa
+  </mat-card-title>
+  <mat-card-content>
+
+    <form [formGroup]="datesForm" (ngSubmit)="save()">
+      <mat-form-field appearance="fill">
+        <mat-label>Data de Inicio</mat-label>
+        <input matInput [matDatepickerFilter]="afterNowFilter" (dateChange)="dateStart = $event.value"  [matDatepicker]="pickerStart" formControlName="dateStart">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart></mat-datepicker>
+
+        <mat-error *ngIf="datesForm.get('dateStart')?.hasError('matDatepickerFilter')">
+          Datas no passado não são aceites.
+        </mat-error>
+
+        <mat-error *ngIf="datesForm.get('dateStart')?.hasError('required')">
+          Data de inicio é um campo obrigatorio.
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Data de Fim</mat-label>
+        <input matInput [matDatepickerFilter]="afterStartFilter" (dateChange)="dateEnd = $event.value" [matDatepicker]="pickerEnd" formControlName="dateEnd">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
+
+        <mat-error *ngIf="!datesForm.valid && datesForm.get('dateEnd')?.hasError('matDatepickerFilter')">
+          Datas anteriores à data de inicio não são aceites.
+        </mat-error>
+
+        <mat-error *ngIf="!datesForm.valid && datesForm.get('dateEnd')?.hasError('required')">
+          Data de fim é um campo obrigatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="!datesForm.valid && datesForm.hasError('overlap')">
+        Esta tarefa está sobreposta com outra tarefa urgente.
+      </mat-error>
+      <button color="primary" mat-raised-button type="submit">
+        <span>Guardar Alterações</span>
+      </button>
+    </form>
+
+
+
+
+
+
+  </mat-card-content>
+</mat-card>
