@@ -7,13 +7,30 @@
 
             <mat-form-field>
                 <mat-label>Nome do Projeto</mat-label>
-                <input matInput formControlName="name">
+                <input matInput type="name" formControlName="name">
             </mat-form-field>
+            <mat-label class="col"
+            [ngStyle]="{'color': projectForm.controls['name'].hasError('required') || projectForm.controls['name'].hasError('minlength') ? 'red' : 'green'}">
+            <mat-icon>
+                {{ projectForm.controls['name'].hasError('required') ||
+                projectForm.controls['name'].hasError('minlength') ? 'cancel' : 'check_circle' }}
+            </mat-icon>
+            Deve de conter pelo menos 4 caracteres alfanumericos
+        </mat-label>
 
             <mat-form-field>
                 <mat-label>Acronimo</mat-label>
-                <input matInput formControlName="alias">
+                <input matInput type="alias" formControlName="alias">
             </mat-form-field>
+            <mat-label class="col"
+            [ngStyle]="{'color': projectForm.controls['alias'].hasError('required') || projectForm.controls['alias'].hasError('minlength') ? 'red' : 'green'}">
+            <mat-icon>
+                {{ projectForm.controls['alias'].hasError('required') ||
+                projectForm.controls['alias'].hasError('minlength') ? 'cancel' : 'check_circle' }}
+            </mat-icon>
+            O acronimo tem de conter exatamente 3 caracteres alfanumericos
+        </mat-label>
+           
 
             <mat-form-field appearance="fill">
                 <mat-label>Enter a date range</mat-label>

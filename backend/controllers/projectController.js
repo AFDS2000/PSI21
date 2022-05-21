@@ -14,11 +14,12 @@ exports.getProject = (req, res, next) => {
 exports.criarProjeto = [
     body('name').trim().not().isEmpty().isLength({
         min: 6
-    }),
+    }).withMessage('O nome deve ter quatro ou mais caracteres, apenas são permitidos caracteres alfanumericos')
+    ,
     body('alias').trim().isLength({
         min: 3,
         max: 3
-    }),
+    }).withMessage('O acronimo deve ter tres caracteres, apenas são permitidos caracteres alfanumericos'),
     body('startDate').trim().not().isEmpty(),
 
     body('endDate').trim(),

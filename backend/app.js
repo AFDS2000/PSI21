@@ -9,7 +9,7 @@ const tasksRouter = require('./routes/tasks');
 const teamRouter = require('./routes/team');
 var projectsRouter = require('./routes/projects');
 const userRouter = require('./routes/user');
-
+const reuniaoRouter = require('./routes/reuniao')
 
 const app = express();
 app.use(cors({
@@ -47,6 +47,7 @@ app.use('/auth', usersRouter);
 app.use('/task', tasksRouter);
 app.use('/team', teamRouter);
 app.use('/projects', projectsRouter);
+app.use('/reuniao', reuniaoRouter);
 
 
 // catch 404 and forward to error handler
