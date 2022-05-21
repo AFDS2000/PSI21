@@ -1,0 +1,29 @@
+mat-card {
+    margin: 4em auto;
+    width: 40em;
+    height: 25em;
+}
+
+input:focus {
+    outline: #336699 auto 1px;
+}
+
+input {
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    display: block;
+}
+
+mat-form-field,
+mat-checkbox {
+    width: 100%;
+    margin-top: 1em;
+}
+
+button {
+    float: right;
+    width: 10em;
+    margin-top: 2em;
+}

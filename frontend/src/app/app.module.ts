@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -20,6 +21,7 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
 import { TaskManagerComponent } from './components/task-manager/task-manager.component'
+import { UnavailableComponent } from './components/unavailable/unavailable.component';
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
@@ -43,6 +45,7 @@ import {MatListModule} from '@angular/material/list';
 import { TasksTimestampsComponent } from './components/tasks-timestamps/tasks-timestamps.component';
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -61,6 +64,8 @@ import { TasksTimestampsComponent } from './components/tasks-timestamps/tasks-ti
         ListaProjetosComponent,
         ProjetosComponent,
         TaskManagerComponent,
+        UnavailableComponent,
+        
         TarefaPercentagemComponent,
         TasksTimestampsComponent
     ],
