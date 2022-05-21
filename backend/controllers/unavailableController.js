@@ -2,33 +2,24 @@ const { body, validationResult } = require('express-validator');
 
 const Unavailable = require('../models/unavailable');
 
-
-exports.getDays = (req, res, next) => {
-    Unavailable.find(req).
-    exec((err, us) => {
-        if (err) return next(err);
-        res.json(us);
-    })
-
-}
-
 exports.addDay = [
-    body('unavailableDay').trim().not().isEmpty().isAfter(Date.now),
+    body('unavailableDay').trim().not().isEmpty(),
     body('hStart').trim().not().isEmpty().isBefore('hEnd'),
     body('hEnd').trim().not().isEmpty().isAfter('hStart'),
 
     (req, res, next) => {
 
         const errors = validationResult(req);
-        
+
         if (!errors.isEmpty()) {
-            return next(errors);
+            res.json({ err: errors });
+            return;
         }
 
         const unavailable = new Unavailable({
             unavailableDay: req.body.unavailableDay,
-            hStart: req.body.periods.hStart,
-            hEnd: ree.body.periods.hEnd
+            hStart: req.body.hStart,
+            hEnd: req.body.hEnd,
         }) 
 
         unavailable.save((err) => {
