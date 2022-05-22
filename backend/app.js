@@ -13,20 +13,16 @@ const userRouter = require('./routes/user');
 const reuniaoRouter = require('./routes/reuniao')
 
 const app = express();
-app.use(cors({
-    origin: 'http://localhost:3071'
-}));
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
-});*/
+});
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-const dev_db_url = 'mongodb+srv://psi021:psi021@cluster0.00uss.mongodb.net/psi021?retryWrites=true';
-// const dev_db_url = 'mongodb://psi021:psi021@localhost:27017/psi021?retryWrites=true&authSource=psi021';
+const dev_db_url = 'mongodb://psi021:psi021@localhost:27017/psi021?retryWrites=true&authSource=psi021';
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
