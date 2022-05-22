@@ -25,7 +25,6 @@ exports.criarProjeto = [
     body('endDate').trim(),
 
     (req, res, next) => {
-        // console.log(req.body);
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
@@ -54,7 +53,6 @@ exports.criarProjeto = [
 ];
 
 exports.updateTeam = function (req, res, next) {
-    console.log(req.body.teams == null)
     if (req.body.teams == null) {
         Project.findByIdAndUpdate(req.body._id, { teams: null }, {}, function (err) {
             if (err) {
@@ -80,7 +78,6 @@ exports.updateTeam = function (req, res, next) {
 };
 
 exports.updateTasks = function (req, res, next) {
-    console.log(req.body.tasks == null)
     if (req.body.tasks == null) {
         Project.findByIdAndUpdate(req.body._id, { tasks: null }, {}, function (err) {
             if (err) {

@@ -70,8 +70,6 @@ exports.getTaskUser = (req, res, next) => {
 };
 
 exports.updatePercentage = function (req, res, next) {
-    console.log(req.body);
-
     Task.findByIdAndUpdate(req.body._id, { percentageConclusion: req.body.percentageConclusion }, {}, function (err) {
         if (err) {
              err.statusCode = 500;

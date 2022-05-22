@@ -7,13 +7,11 @@ exports.criarReuniao = [
     body('duration').trim().toInt().isDivisibleBy(30).withMessage('Deverá ser multiplo de 30'),
 
     (req, res, next) => {
-        console.log(req.body)
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
             return next(errors);
         }
-
 
         const reuniao = new Reuniao({
             type: req.body.type,
@@ -37,3 +35,11 @@ exports.criarReuniao = [
     }
 
 ];
+
+exports.getMeetingsByUser = (req, res, next) => {
+    Reuniao.find({ users: req.params.id })
+        .exec((error, meetings) => {
+            if (error) return next(error);
+            res.status(200).json(meetings);
+        });
+}

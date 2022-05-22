@@ -1,0 +1,88 @@
+<mat-card>
+
+  <h4>Selecionar utilizador para consultar calendario: </h4>
+
+  <mat-form-field appearance="fill" style="margin-top: 1.5em">
+    <mat-label>Select user</mat-label>
+    <mat-select [disabled]="getUsersArray().length == 0" [(value)]="userSelectedId" (selectionChange)="selectUser()">
+      <mat-option *ngFor="let user of getUsersArray()" [value]="user._id">
+        {{user.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h2 style="margin-top: 1em;" *ngIf="userSelectedId">Calendario de {{usersMap.get(userSelectedId)?.name}}</h2>
+
+  <h4 style="margin-top: 2em;" *ngIf="userSelectedId">Calendário das Tarefas:</h4>
+  <table *ngIf="userSelectedId" mat-table [dataSource]="this.calendarTasks" class="mat-elevation-z8"
+    style="margin-top: 1.5em;">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Level Column -->
+    <ng-container matColumnDef="level">
+      <th mat-header-cell *matHeaderCellDef> Nivel </th>
+      <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+    </ng-container>
+
+    <!-- PercentageConclusion Column -->
+    <ng-container matColumnDef="percentageConclusion">
+      <th mat-header-cell *matHeaderCellDef> Percentagem de Conclusão (%) </th>
+      <td mat-cell *matCellDef="let element"> {{element.percentageConclusion}} </td>
+    </ng-container>
+
+    <!-- Start Date Column -->
+    <ng-container matColumnDef="tsStart">
+      <th mat-header-cell *matHeaderCellDef> Data Fim </th>
+      <td mat-cell *matCellDef="let element"> {{toDateString(element.tsStart)}} </td>
+    </ng-container>
+
+    <!-- End Date Column -->
+    <ng-container matColumnDef="tsEnd">
+      <th mat-header-cell *matHeaderCellDef> Data Inicio </th>
+      <td mat-cell *matCellDef="let element"> {{toDateString(element.tsEnd)}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsTasks"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsTasks;"></tr>
+
+  </table>
+
+  <h4 style="margin-top: 2em;" *ngIf="userSelectedId">Reuniões agendadas:</h4>
+  <table *ngIf="userSelectedId" mat-table [dataSource]="this.calendarMeeting" class="mat-elevation-z8"
+    style="margin-top: 1.5em;">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef> Duração </th>
+      <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+    </ng-container>
+
+    <!-- Period Column -->
+    <ng-container matColumnDef="period">
+      <th mat-header-cell *matHeaderCellDef> Periodo </th>
+      <td mat-cell *matCellDef="let element"> {{element.startDate}} - {{element.endDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hourStart">
+      <th mat-header-cell *matHeaderCellDef> Hora de Inicio </th>
+      <td mat-cell *matCellDef="let element"> {{element.hourStart}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsMeetings"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsMeetings;"></tr>
+
+  </table>
+
+</mat-card>

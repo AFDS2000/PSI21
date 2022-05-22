@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -40,6 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
+import { ViewCalendarsComponent } from './components/view-calendars/view-calendars.component';
 import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
 import { MatListModule } from '@angular/material/list';
 import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunioes.component';
@@ -65,6 +65,7 @@ import { TasksTimestampsComponent } from './components/tasks-timestamps/tasks-ti
         ListaProjetosComponent,
         ProjetosComponent,
         TaskManagerComponent,
+        ViewCalendarsComponent,
         TarefaPercentagemComponent,
         CriarReunioesComponent,
         UnavailableComponent,
@@ -92,7 +93,7 @@ import { TasksTimestampsComponent } from './components/tasks-timestamps/tasks-ti
         MatCardModule,
         MatCommonModule,
         MatTableModule,
-       
+
     ],
     providers: [
         {

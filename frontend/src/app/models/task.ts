@@ -6,5 +6,4 @@ export interface Task {
     users: Array<string>;
     tsStart: number;
     tsEnd: number;
-
 }
