@@ -12,7 +12,7 @@ import { ErrorHandlerService } from './error-handler.service';
 })
 export class UnavailableService {
   
-  private url = 'http://localhost:3021/unavailable';
+  private url = 'http://appserver.alunos.di.fc.ul.pt:3021/unavailable';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -24,7 +24,6 @@ export class UnavailableService {
     ) {}
 
   addUnavailable(un: Unavailable): Observable<Unavailable>{
-    //const url_add = `${this.url}`;
     return this.http.post<Unavailable>(this.url, {un}, this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Unavailable>('addUnavailable'))

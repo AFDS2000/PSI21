@@ -12,9 +12,7 @@ import { Reuniao } from '../models/reuniao';
 })
 export class ReuniaoService {
 
-
-  //    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/task';
-  private url = 'http://localhost:3021/reuniao';
+  private url = 'http://appserver.alunos.di.fc.ul.pt:3021/reuniao';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,10 +27,10 @@ export class ReuniaoService {
   getReuniaoUser(id: string) {
     const url_reuniaoUser = `${this.url}/${id}`
     return this.http.get<Reuniao[]>(url_reuniaoUser)
-        .pipe(
-            catchError(this.errorHandlerService.handleError<Reuniao[]>('getReuniaoUser', []))
-        );
-}
+      .pipe(
+        catchError(this.errorHandlerService.handleError<Reuniao[]>('getReuniaoUser', []))
+      );
+  }
 
   addReuniao(criarReuniao: Reuniao): Observable<Reuniao> {
     const url_criarReuniao = `${this.url}/criarReuniao`

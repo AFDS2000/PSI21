@@ -17,10 +17,8 @@ export class ProjetosService {
         private errorHandlerService: ErrorHandlerService
     ) { }
 
-    //    private urlProjet = 'http://appserver.alunos.di.fc.ul.pt:3021/projects';
-    //    private urlTeam = 'http://appserver.alunos.di.fc.ul.pt:3021/team';
-    private urlProjet = 'http://localhost:3021/projects';
-    private urlTeam = 'http://localhost:3021/team'
+    private urlProjet = 'http://appserver.alunos.di.fc.ul.pt:3021/projects';
+    private urlTeam = 'http://appserver.alunos.di.fc.ul.pt:3021/team';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })

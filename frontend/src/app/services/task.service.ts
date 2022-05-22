@@ -5,16 +5,13 @@ import { catchError, Observable } from 'rxjs';
 
 import { Task } from '../models/task';
 import { ErrorHandlerService } from './error-handler.service';
-import { User } from "../models/user";
 
 @Injectable({
     providedIn: 'root'
 })
 export class TaskService {
 
-    //    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/task';
-    private url = 'http://localhost:3021/task';
-
+    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/task';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
