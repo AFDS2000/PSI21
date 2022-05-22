@@ -23,6 +23,7 @@ import { TaskManagerComponent } from "./components/task-manager/task-manager.com
 import { UnavailableComponent } from './components/unavailable/unavailable.component';
  
 import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
+import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunioes.component';
 import {TasksTimestampsComponent} from "./components/tasks-timestamps/tasks-timestamps.component";
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
     { path: 'listaProjeto', component: ListaProjetosComponent, canActivate: [AuthGuardService] },
     { path: 'criarProjeto', component: CriarProjetoComponent, canActivate: [AuthGuardService, AdminGuardService] },
     { path: 'criarUtilizador', component: SignupComponent, canActivate: [AuthGuardService, AdminGuardService] },
+    { path: 'criarReuniao', component: CriarReunioesComponent, canActivate: [AuthGuardService] },
     { path: '**', component: NotFoundComponent, canActivate: [AuthGuardService] },
 ];
 
