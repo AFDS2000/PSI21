@@ -16,7 +16,7 @@ export class CriarProjetoService {
 
     private url = 'http://localhost:3021/projects/criarProjeto/';
     private url2 = 'http://localhost:3021/projects/listaProjetos/';
-  
+
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };

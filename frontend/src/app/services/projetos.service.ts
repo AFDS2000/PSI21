@@ -16,7 +16,7 @@ export class ProjetosService {
         private http: HttpClient,
         private errorHandlerService: ErrorHandlerService
     ) { }
-    
+
 //    private urlProjet = 'http://appserver.alunos.di.fc.ul.pt:3021/projects';
 //    private urlTeam = 'http://appserver.alunos.di.fc.ul.pt:3021/team';
     private urlProjet = 'http://localhost:3021/projects';

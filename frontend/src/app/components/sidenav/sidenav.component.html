@@ -48,6 +48,10 @@
                     <mat-icon>edit</mat-icon>
                     <span>Alterar<br>Percentagem</span>
                 </mat-panel-title>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/tasks-timestamps">
+                  <mat-icon>add_alarm</mat-icon>
+                  <span>Adicionar<br>Datas</span>
+                </mat-panel-title>
             </mat-expansion-panel>
         </mat-accordion>
 
@@ -91,11 +95,20 @@
             </mat-expansion-panel>
         </mat-accordion>
 
-        <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
-            routerLink="/criarUtilizador">
-            <mat-icon>person</mat-icon>
-            <span>Criar Utilizador</span>
-        </button>
+        <mat-accordion *ngIf="isAdmin">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>calendar_today</mat-icon>
+                        <span>Marcações</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-title routerLinkActive="list-item-active" routerLink="/unavailable">
+                    <mat-icon>date_range</mat-icon>
+                    <span>Indisponibilidade</span>
+                </mat-panel-title>
+            </mat-expansion-panel>
+        </mat-accordion>
 
         <button mat-button (click)="logout()" class="menu-button logout">
             <mat-icon>exit_to_app</mat-icon>

@@ -11,7 +11,7 @@ export class UserService {
 
 //    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/user';
 private url = 'http://localhost:3021/user';
-  
+
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };

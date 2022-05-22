@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -20,6 +21,7 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
 import { TaskManagerComponent } from './components/task-manager/task-manager.component'
+import { UnavailableComponent } from './components/unavailable/unavailable.component';
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
@@ -41,6 +43,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
 import { MatListModule } from '@angular/material/list';
 import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunioes.component';
+import { TasksTimestampsComponent } from './components/tasks-timestamps/tasks-timestamps.component';
 
 
 
@@ -64,7 +67,8 @@ import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunio
         TaskManagerComponent,
         TarefaPercentagemComponent,
         CriarReunioesComponent,
-       
+        UnavailableComponent,
+        TasksTimestampsComponent,
     ],
     imports: [
         MatListModule,

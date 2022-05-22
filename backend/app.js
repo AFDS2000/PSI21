@@ -7,6 +7,7 @@ const logger = require('morgan');
 const usersRouter = require('./routes/auth');
 const tasksRouter = require('./routes/tasks');
 const teamRouter = require('./routes/team');
+const unavailableRouter = require('./routes/unavailable');
 var projectsRouter = require('./routes/projects');
 const userRouter = require('./routes/user');
 const reuniaoRouter = require('./routes/reuniao')
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/user', userRouter);
 app.use('/auth', usersRouter);
 app.use('/task', tasksRouter);
+app.use('/unavailable', unavailableRouter);
 app.use('/team', teamRouter);
 app.use('/projects', projectsRouter);
 app.use('/reuniao', reuniaoRouter);
