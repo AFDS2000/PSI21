@@ -4,4 +4,6 @@ export interface Task {
     level: string;
     percentageConclusion: number;
     users: Array<string>;
+    tsStart: number;
+    tsEnd: number;
 }
