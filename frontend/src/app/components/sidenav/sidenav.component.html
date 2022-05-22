@@ -120,6 +120,12 @@
             </mat-expansion-panel>
         </mat-accordion>
 
+        <button mat-button *ngIf="isAdmin" class="menu-button" routerLinkActive="list-item-active"
+            routerLink="/criarUtilizador">
+            <mat-icon>person</mat-icon>
+            <span>Criar Utilizador</span>
+        </button>
+
         <button mat-button (click)="logout()" class="menu-button logout">
             <mat-icon>exit_to_app</mat-icon>
             <span>Logout</span>
