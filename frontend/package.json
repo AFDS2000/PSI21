@@ -22,6 +22,8 @@
         "@angular/platform-browser-dynamic": "~13.3.5",
         "@angular/router": "~13.3.5",
         "@ngneat/until-destroy": "^9.0.2",
+        "@syncfusion/ej2-angular-calendars": "^20.1.56",
+        "ngx-material-timepicker": "^5.5.3",
         "rxjs": "~7.5.5",
         "sweetalert2": "^11.4.10",
         "tailwindcss": "^3.0.24",

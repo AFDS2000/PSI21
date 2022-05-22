@@ -12,6 +12,8 @@ import { ErrorHandlerService } from './error-handler.service';
     providedIn: 'root'
 })
 export class AuthService {
+
+    //private url = 'http://appserver.alunos.di.fc.ul.pt:3021/auth/';
     private url = 'http://localhost:3021/auth/';
 
     isUserLoogedIn$ = new BehaviorSubject<boolean>(false);

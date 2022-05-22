@@ -1,10 +1,9 @@
-import { User } from "./user";
-
-export interface Meeting {
+export interface Reuniao {
     _id: string;
-    duration: string;
+    duration: number;
     startDate: Date;
-    endDate: Date;
-    users: Array<User>;
+    endDate: Date | null;
+    users: Array<string>;
     type: string;
+    hourStart: string;
 }

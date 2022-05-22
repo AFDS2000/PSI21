@@ -16,8 +16,11 @@ export class ProjetosService {
         private http: HttpClient,
         private errorHandlerService: ErrorHandlerService
     ) { }
+
+    //    private urlProjet = 'http://appserver.alunos.di.fc.ul.pt:3021/projects';
+    //    private urlTeam = 'http://appserver.alunos.di.fc.ul.pt:3021/team';
     private urlProjet = 'http://localhost:3021/projects';
-    private urlTeam = 'http://localhost:3021/team';
+    private urlTeam = 'http://localhost:3021/team'
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -51,4 +54,11 @@ export class ProjetosService {
             );
     }
 
+    editTeamProject(id: string, team: string): Observable<Project> {
+        const url_edit = `${this.urlProjet}/edit-team/${id}`;
+
+        return this.http.post<Project>(url_edit, team, this.httpOptions).pipe(
+            catchError(this.errorHandlerService.handleError<Project>('editUsersTask'))
+        );
+    }
 }

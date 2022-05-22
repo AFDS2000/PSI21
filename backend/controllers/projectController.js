@@ -14,17 +14,17 @@ exports.getProject = (req, res, next) => {
 exports.criarProjeto = [
     body('name').trim().not().isEmpty().isLength({
         min: 6
-    }),
+    }).withMessage('O nome deve ter quatro ou mais caracteres, apenas são permitidos caracteres alfanumericos')
+    ,
     body('alias').trim().isLength({
         min: 3,
         max: 3
-    }),
+    }).withMessage('O acronimo deve ter tres caracteres, apenas são permitidos caracteres alfanumericos'),
     body('startDate').trim().not().isEmpty(),
 
     body('endDate').trim(),
 
     (req, res, next) => {
-        // console.log(req.body);
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
@@ -53,7 +53,6 @@ exports.criarProjeto = [
 ];
 
 exports.updateTeam = function (req, res, next) {
-    console.log(req.body.teams == null)
     if (req.body.teams == null) {
         Project.findByIdAndUpdate(req.body._id, { teams: null }, {}, function (err) {
             if (err) {
@@ -79,7 +78,6 @@ exports.updateTeam = function (req, res, next) {
 };
 
 exports.updateTasks = function (req, res, next) {
-    console.log(req.body.tasks == null)
     if (req.body.tasks == null) {
         Project.findByIdAndUpdate(req.body._id, { tasks: null }, {}, function (err) {
             if (err) {

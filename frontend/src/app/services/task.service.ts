@@ -12,7 +12,9 @@ import { User } from "../models/user";
 })
 export class TaskService {
 
+    //    private url = 'http://appserver.alunos.di.fc.ul.pt:3021/task';
     private url = 'http://localhost:3021/task';
+
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -58,6 +60,21 @@ export class TaskService {
 
         return this.http.post<Task>(url_edit, users, this.httpOptions).pipe(
             catchError(this.errorHandlerService.handleError<Task>('editUsersTask'))
+        );
+    }
+    editPercentageTask(task: Task): Observable<Task> {
+        const url_edit = `${this.url}/update-percentage`;
+
+        return this.http.post<Task>(url_edit, task, this.httpOptions).pipe(
+            catchError(this.errorHandlerService.handleError<Task>('editPercentageTask'))
+        );
+    }
+
+    setTimestampsTask(id: string, tsStart: number, tsEnd: number): Observable<Task> {
+        const url_edit = `${this.url}/set-timestamps/${id}`;
+
+        return this.http.post<Task>(url_edit, { tsStart, tsEnd }, this.httpOptions).pipe(
+            catchError(this.errorHandlerService.handleError<Task>('setTimestampsTask'))
         );
     }
 }

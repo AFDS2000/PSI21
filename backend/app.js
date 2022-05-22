@@ -4,20 +4,24 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const authRouter = require('./routes/auth');
+const usersRouter = require('./routes/auth');
 const tasksRouter = require('./routes/tasks');
 const teamRouter = require('./routes/team');
-const projectsRouter = require('./routes/projects');
+const unavailableRouter = require('./routes/unavailable');
+var projectsRouter = require('./routes/projects');
 const userRouter = require('./routes/user');
-
+const reuniaoRouter = require('./routes/reuniao')
 
 const app = express();
-app.use((req, res, next) => {
+app.use(cors({
+    origin: 'http://localhost:3071'
+}));
+/*app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
-});
+});*/
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
@@ -40,21 +44,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user', userRouter);
-app.use('/auth', authRouter);
+app.use('/auth', usersRouter);
 app.use('/task', tasksRouter);
+app.use('/unavailable', unavailableRouter);
 app.use('/team', teamRouter);
 app.use('/projects', projectsRouter);
+app.use('/reuniao', reuniaoRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     const error = new Error('Not Found');
     error.statusCode = 404;
     next(error);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.status(err.statusCode || 500);
     res.json(err.message)
 });

@@ -20,6 +20,7 @@ import { ShowTeamsComponent } from './components/show-teams/show-teams.component
 import { ListaProjetosComponent } from './components/lista-projetos/lista-projetos.component';
 import { ProjetosComponent } from './components/projetos/projetos.component';
 import { TaskManagerComponent } from './components/task-manager/task-manager.component'
+import { UnavailableComponent } from './components/unavailable/unavailable.component';
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
@@ -39,6 +40,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { ViewCalendarsComponent } from './components/view-calendars/view-calendars.component';
+import { TarefaPercentagemComponent } from './components/tarefa-percentagem/tarefa-percentagem.component';
+import { MatListModule } from '@angular/material/list';
+import { CriarReunioesComponent } from './components/criar-reunioes/criar-reunioes.component';
+import { TasksTimestampsComponent } from './components/tasks-timestamps/tasks-timestamps.component';
+
+
 
 @NgModule({
     declarations: [
@@ -58,9 +65,14 @@ import { ViewCalendarsComponent } from './components/view-calendars/view-calenda
         ListaProjetosComponent,
         ProjetosComponent,
         TaskManagerComponent,
-        ViewCalendarsComponent
+        ViewCalendarsComponent,
+        TarefaPercentagemComponent,
+        CriarReunioesComponent,
+        UnavailableComponent,
+        TasksTimestampsComponent,
     ],
     imports: [
+        MatListModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
@@ -80,7 +92,8 @@ import { ViewCalendarsComponent } from './components/view-calendars/view-calenda
         MatSelectModule,
         MatCardModule,
         MatCommonModule,
-        MatTableModule
+        MatTableModule,
+
     ],
     providers: [
         {
